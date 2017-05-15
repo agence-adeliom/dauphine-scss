@@ -1,0 +1,16 @@
+{
+  "name": "dauphine",
+  "version": "0.1.0",
+  "description": "scss starter pack",
+  "main": "dauphine.scss",
+  "scripts": {
+    "test": ""
+  },
+  "keywords": [
+    "scss",
+    "tools",
+    "grid"
+  ],
+  "author": "Adeliom",
+  "license": "MIT"
+}
