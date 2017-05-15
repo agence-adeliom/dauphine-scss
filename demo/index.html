@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+  <head>
+    <title>Démo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel='stylesheet' href='./style.css' type='text/css' media='all' />
+  </head>
+  <body>
+
+    <div class="container">
+      <h1>Documentation</h1>
+      
+      <div class="box">
+        <header class="box-head">
+          <h2>Variables</h2>
+        </header>
+        <div class="box-content">
+          <p></p>
+          <code>
+            /******************************
+              **
+              ** breakpoints
+              **
+              ******************************/
+            $bp-xs:  480px; //phone-portrait
+            $bp-xsm: 720px; //phone-landscape
+
+            $bp-sm:  960px; //tablet-portrait
+            $bp-md:  1280px; //tablet-landscape
+
+            $bp-lg:  1600px; //desktop
+
+            /** media query **/
+            $media-query-xsm: "(min-width: #{$bp-xs})";
+            $media-query-sm:  "(min-width: #{$bp-xsm})";
+            $media-query-md:  "(min-width: #{$bp-sm})";
+            $media-query-lg:  "(min-width: #{$bp-md})";
+            $media-query-xlg: "(min-width: #{$bp-lg})";
+            
+            /******************************
+              **
+              ** Container/Gutters
+              **
+              ******************************/
+              $gutter-width-xs:  16px;
+              $gutter-width-xsm: $gutter-width-xs;
+              $gutter-width-sm:  24px;
+              $gutter-width-md:  $gutter-width-sm;
+              $gutter-width-lg:  $gutter-width-md;
+              $gutter-width-xlg: $gutter-width-lg;
+
+              $grid-row-width-xs:  100%;
+              $grid-row-width-xsm: 100%;
+              $grid-row-width-sm:  720px;
+              $grid-row-width-md:  940px;
+              $grid-row-width-lg:  1200px;
+              $grid-row-width-xlg: 1400px;
+          </code>
+        </div>
+      </div>
+      
+      <div class="box">
+        <header class="box-head">
+          <h2>Container</h2>
+        </header>
+        <div class="box-content">
+          <p><strong>Arguments</strong></p>
+          <ul>
+            <li>bool <strong>$with-gutter</strong>: Add gutter (default false)</li>
+          </ul>
+          <code>
+            .container {
+              @include container();
+            }
+          </code>
+        </div>
+      </div>
+      
+      <div class="box">
+        <header class="box-head">
+          <h2>Gutterize</h2>
+        </header>
+        <div class="box-content">
+          <p>Add default gutter for all defined breakpoints</p>
+          <code>
+            .box {
+              @include gutterize;
+            }
+          </code>
+        </div>
+      </div>
+      
+      <div class="box">
+        <header class="box-head">
+          <h2>Column</h2>
+        </header>
+        <div class="box-content">
+          <p>Create a column width defined size.</p>
+          <p><strong>Arguments</strong></p>
+          <ul>
+            
+            <li>int <strong>$col</strong>: Number of columns</li>
+            <li>int <strong>$sum</strong>: Total columns</li>
+            <li>bool <strong>$with-gutter</strong>: Add gutter (default true)</li>
+          </ul>
+          <code>
+            .box {
+              @include column(2, 12, true);
+            }
+          </code>
+        </div>
+      </div>
+
+      <div class="box">
+        <header class="box-head">
+          <h2>Offset</h2>
+        </header>
+        <div class="box-content">
+          <p>Pull block from a defined column size</p>
+          <p><strong>Arguments</strong></p>
+          <ul>
+            <li>int <strong>$col</strong>: Number of columns</li>
+            <li>int <strong>$sum</strong>: Total columns</li>
+            <li>string <strong>$direction</strong>: left or right (default left)</li>
+          </ul>
+          <code>
+            .box {
+              @include offset(2, 12);
+            }
+          </code>
+        </div>
+      </div>
+
+      <div class="box">
+        <header class="box-head">
+          <h2>Breakpoints</h2>
+        </header>
+        <div class="box-content">
+          <p>mixin breakpoint use predefined</p>
+          <code>
+            $desktop: "(min-width: 1024px)";
+
+            div {
+                @include breakpoint($desktop){
+                    width: 100%;
+                }
+
+                //predefined breakpoints
+
+                @include breakpoint-xsm { } //mobile-landscape
+                @include  breakpoint-sm { } //tablet-portrait
+                @include  breakpoint-md { } //tablet-landscape
+                @include  breakpoint-lg { } //desktop
+                @include  breakpoint-xlg { } //desktop large
+            }
+          </code>
+        </div>
+      </div>
+
+      <div class="box">
+        <header class="box-head">
+          <h2>Utils</h2>
+        </header>
+        <div class="box-content">
+          <code>
+            //clearfix
+            @include clearfix();
+            @include clear(); //alias of clearfix
+            
+            //animation
+            @mixin transform($property: none)
+            @mixin rotate ($deg)
+            @mixin scale($scale) 
+            @mixin transform-origin($origin...)
+            @mixin transform-delay($delay...)
+            @mixin will-change-transform()
+            @mixin animation($str) 
+            @mixin animation-delay($delay...) 
+            @mixin animation-iteration-count($count...)
+            @mixin animation-pause(){
+            @mixin keyframes($animation)
+
+             //utils
+            @include hide-text($extend: true); //text-indent to hide
+            @mixin prefixer() //add -moz -web -o to a property
+          </code>
+        </div>
+      </div>
+      
+      <h1>Playground</h1>
+      
+      <div class="play-wrap">
+        
+        <div class="clearfix">
+        
+          <div class="column col-test-1">
+            <strong>With gutter</strong><br />
+            <code class="props">
+@include gutterize;
+
+@include  breakpoint-sm {
+  @include column(6, 12);
+}
+@include  breakpoint-md {
+  @include column(2, 12);
+}
+            </code>
+          </div>
+
+          <div class="column col-test-2">
+            <strong>No gutter</strong><br />
+
+            <code class="props">
+@include  breakpoint-sm {
+  @include column(6, 12, false);
+}
+
+@include  breakpoint-md {
+  @include column(2, 12, false);
+  @include offset(1, 12, right);
+}
+            </code>
+          </div>
+
+          <div class="column col-test-3">
+            <strong>No gutter</strong><br />
+            <code class="props">
+@include  breakpoint-sm {
+  @include column(6, 12, false);
+}
+@include  breakpoint-md {
+  @include column(3, 12, false);
+}
+            </code>
+          </div>
+
+          <div class="column col-test-4">
+            <strong>With gutter</strong><br />
+            <code class="props">
+  @include gutterize;
+  
+  @include  breakpoint-sm {
+    @include column(6, 12);
+  }
+  @include  breakpoint-md {
+    @include column(2, 12);
+    @include offset(2, 12);
+  }
+            </code>
+          </div>
+
+        </div>
+        <div class="clearfix">
+          
+          <div class="column col-test-5">
+            <strong>With gutter to sm</strong><br />
+            <code class="props">
+@include gutterize;
+@include breakpoint-xsm {
+  @include column(1, 2, false);
+}
+            </code>
+          </div>
+          <div class="column col-test-5">
+            <strong>With gutter to sm</strong><br />
+            <code class="props">
+@include gutterize;
+@include breakpoint-xsm {
+  @include column(1, 2, false);
+}
+            </code>
+          </div>
+          
+        </div>
+
+      </div>
+
+  
+    
+    
+    </body>
+</html>

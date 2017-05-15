@@ -1,0 +1,115 @@
+@import '../../dauphine';
+
+
+html{  font-family:"Lucida Grande", Tahoma, Verdana, Arial, sans-serif; @include type(16px, 28px, 1.14); }
+
+.container{
+  @include container;
+  
+  @include gutterize;
+}
+
+.clearfix{
+  @include clearfix();
+}
+
+.box {
+  margin-bottom:rem(40);
+  .box-head{ @include txt-center; }
+  
+}
+
+
+code {
+    background: #eee;
+    border: rem(1) solid #ddd;
+    border-radius: rem(3);
+    color: #aaa;
+    display: block;
+    font-family: monospace;
+
+    white-space: pre-wrap;
+    width: 100%;
+
+}
+
+
+//Playground
+.play-wrap{
+  padding-bottom:rem(50);
+  @include clearfix;
+}
+
+.props{
+  font-family: monospace;
+  border-radius: rem(3);
+  margin:rem(5) 0;
+  background: #efefef;
+  font-size:rem(14);
+}
+
+
+.col-test-1{
+  border:rem(1) solid olive;
+  
+  @include gutterize;
+  
+  @include  breakpoint-sm {
+    @include column(6, 12);
+  }
+  @include  breakpoint-md {
+    @include column(2, 12);
+  }
+}
+
+.col-test-2{
+  border:rem(1) solid pink;
+
+  @include  breakpoint-sm {
+    @include column(6, 12, false);
+  }
+  
+  @include  breakpoint-md {
+    @include column(2, 12, false);
+    @include offset(1, 12, right);
+  }
+  
+}
+
+.col-test-3{ 
+  border:rem(1) solid blue;
+  
+  @include  breakpoint-sm {
+    @include column(6, 12, false);
+  }
+  @include  breakpoint-md {
+    @include column(3, 12, false);
+  }
+
+}
+
+.col-test-4{ 
+  border:rem(1) solid violet;
+  
+  @include gutterize;
+  
+  @include  breakpoint-sm {
+    @include column(6, 12);
+  }
+  @include  breakpoint-md {
+    @include column(2, 12);
+    @include offset(2, 12);
+  }
+
+}
+
+.col-test-5{
+  border:rem(1) solid DeepSkyBlue;
+  
+  @include gutterize;
+
+  @include gutterize;
+  @include breakpoint-xsm {
+    @include column(1, 2, false);
+  }
+}
