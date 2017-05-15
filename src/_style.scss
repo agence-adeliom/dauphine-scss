@@ -1,0 +1,53 @@
+@mixin naked(){ padding:0; margin:0; list-style:none; list-style-image:none; }
+
+@mixin b(){ font-weight:bold; }
+@mixin i(){ font-style:italic; }
+@mixin u(){ text-decoration:underline; }
+@mixin weight-normal(){ font-weight:normal; }
+
+@mixin uc(){ text-transform:uppercase; }
+@mixin lc(){ text-transform:lowercase; }
+@mixin nc(){ text-transform:none; }
+
+
+@mixin txt-center(){ text-align:center; }
+@mixin txt-left(){ text-align:left; }
+@mixin txt-right(){ text-align:right; }
+@mixin txt-justify(){ text-align:justify; }
+
+
+@mixin absolute-full(){ position:absolute; top:0; left:0; right:0; bottom:0; }
+
+
+@mixin truncate(){ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+
+@mixin vertical-align{
+    position:relative; top:50%;
+    @include transform(translateY(-50%));
+}
+
+@mixin text-gradient($color1, $color2, $start:left bottom, $end:right top){
+	background:-webkit-gradient(linear, $start, $end, from($color1), to($color2));
+	-webkit-background-clip: text;
+ 	-webkit-text-fill-color: transparent;
+  	color:$color1;
+}
+
+
+@mixin gradient($color1, $color2, $step:50%, $order:1){
+  background:$color1;
+  background: -moz-linear-gradient(top, $color1 0%, if($order == 1, $color1, $color2) $step, $color2 100%);
+  background: -webkit-linear-gradient(top, $color1 0%, if($order == 1, $color1, $color2) $step, $color2 100%);
+  background: linear-gradient(to bottom, $color1 0%, if($order == 1, $color1, $color2) $step, $color2 100%);
+}
+
+
+@mixin radial-gradient($property...) {
+
+  background-image: -moz-radial-gradient($property);
+  background-image: -webkit-radial-gradient($property);
+  background-image: -o-radial-gradient($property);
+  background-image: -ms-radial-gradient($property);
+  background-image: radial-gradient($property);
+}

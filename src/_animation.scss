@@ -1,0 +1,119 @@
+// Renders fully prefixed transistion
+@mixin transition ($property: 0.15s) {
+  $valid: false;
+  @if type-of($property) == "string" {
+    $valid: true;
+  }
+  @if type-of($property) == "list" {
+    $valid: true;
+  }
+  @if type-of($property) == "number" {
+    $valid: true;
+  }
+  @if $valid == true {
+    @include prefixer(transition, $property, webkit moz ms);
+  } @else {
+    @warn "property: #{$property} is not a valid argument";
+  }
+}
+
+// Renders fully prefixed transform
+@mixin transform($property: none) {
+  $valid: false;
+  @if type-of($property) == "string" {
+    $valid: true;
+  }
+  @if type-of($property) == "list" {
+    $valid: true;
+  }
+  @if $valid == true {
+    @include prefixer(transform, $property, webkit moz ms);
+  } @else {
+    @warn "property: #{$property} is not a valid argument";
+  }
+}
+
+@mixin transition-transform($transition...){
+  -moz-transition:-moz-transform $transition;
+  -webkit-transition:-webkit-transform $transition;
+  -o-transition:-o-transform $transition;
+  -ms-transition:-ms-transform $transition;
+  transition:transform $transition;
+}
+
+@mixin rotate ($deg) {
+  @include transform(rotate(#{$deg}deg));
+}
+
+// scale
+@mixin scale($scale) {
+   @include transform(scale($scale));
+} 
+
+
+@mixin transform-origin($origin...) {
+  @include prefixer(transform-origin, $origin, webkit moz ms o);
+}
+
+@mixin transform-delay($delay...) {
+  @include prefixer(transform-delay, $delay, webkit moz ms o);
+}
+
+@mixin will-change-transform(){
+  will-change:-moz-transform;
+  will-change:-webkit-transform;
+  will-change:-o-transform;
+  will-change:-ms-transform;
+  will-change:transform;
+}
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};
+}
+
+@mixin animation-delay($delay...) {
+  -webkit-animation-delay: $delay;
+  -moz-animation-delay: $delay;
+  -ms-animation-delay: $delay;
+  -o-animation-delay: $delay;
+  animation-delay: $delay;
+}
+
+@mixin animation-iteration-count($count...){
+  -webkit-animation-iteration-count:$count;
+  -moz-animation-iteration-count:$count;
+  -ms-animation-iteration-count:$count;
+  -o-animation-iteration-count: $count;
+  animation-iteration-count: $count;
+}
+
+@mixin animation-pause(){
+  -webkit-animation-play-state:paused !important;
+  -moz-animation-play-state: paused !important;
+  -ms-animation-play-state: paused !important;
+  -o-animation-play-state: paused !important;
+  animation-play-state: paused !important;
+}
+
+
+@mixin keyframes($animation) {
+    @-webkit-keyframes #{$animation} {
+        @content;
+    }
+    @-moz-keyframes #{$animation} {
+        @content;
+    }
+    @-ms-keyframes #{$animation} {
+        @content;
+    }
+    @-o-keyframes #{$animation} {
+        @content;
+    }
+    @keyframes #{$animation} {
+        @content;
+    }
+}

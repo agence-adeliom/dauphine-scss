@@ -1,0 +1,23 @@
+{
+  "name": "Dauphine",
+  "authors": [
+    "Adeliom <tza@adeliom.com>"
+  ],
+  "description": "scss starter pack",
+  "main": "dauphine.scss",
+  "keywords": [
+    "scss",
+    "tools",
+    "grid"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

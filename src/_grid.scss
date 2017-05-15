@@ -1,0 +1,185 @@
+/******************************
+**
+** breakpoints
+**
+******************************/
+
+$bp-xs:  480px; //phone-portrait
+$bp-xsm: 720px; //phone-landscape
+
+$bp-sm:  960px; //tablet-portrait
+$bp-md:  1280px; //tablet-landscape
+
+$bp-lg:  1600px; //desktop
+
+/** media query **/
+$media-query-xsm: "(min-width: #{$bp-xs})";
+$media-query-sm:  "(min-width: #{$bp-xsm})";
+$media-query-md:  "(min-width: #{$bp-sm})";
+$media-query-lg:  "(min-width: #{$bp-md})";
+$media-query-xlg: "(min-width: #{$bp-lg})";
+
+/** media shortcuts **/
+
+//phone-landscape
+@mixin breakpoint-xsm {
+    @include breakpoint($media-query-xsm) {
+        @content;
+    }
+}
+ //tablet-portrait
+@mixin breakpoint-sm {
+    @include breakpoint($media-query-sm) {
+        @content;
+    }
+}
+//tablet-landscape
+@mixin breakpoint-md {
+    @include breakpoint($media-query-md) {
+        @content;
+    }
+}
+//desktop
+@mixin breakpoint-lg {
+    @include breakpoint($media-query-lg) {
+        @content;
+    }
+}
+//desktop large
+@mixin breakpoint-xlg {
+    @include breakpoint($media-query-xlg) {
+        @content;
+    }
+}
+
+
+/******************************
+**
+** Container/Gutters
+**
+******************************/
+$gutter-width-xs:  16px;
+$gutter-width-xsm: $gutter-width-xs;
+$gutter-width-sm:  24px;
+$gutter-width-md:  $gutter-width-sm;
+$gutter-width-lg:  $gutter-width-md;
+$gutter-width-xlg: $gutter-width-lg;
+
+$grid-row-width-xs:  100%;
+$grid-row-width-xsm: 100%;
+$grid-row-width-sm:  720px;
+$grid-row-width-md:  940px;
+$grid-row-width-lg:  1200px;
+$grid-row-width-xlg: 1400px;
+
+
+@mixin gutterize() {
+  padding-left:$gutter-width-xs/2;
+  padding-right:$gutter-width-xs/2;
+
+  @include breakpoint-xsm {
+    padding-left:$gutter-width-xsm/2;
+    padding-right:$gutter-width-xsm/2;
+  }
+  @include  breakpoint-sm {
+    padding-left:$gutter-width-sm/2;
+    padding-right:$gutter-width-sm/2;
+  }
+  @include  breakpoint-md {
+    padding-left:$gutter-width-md/2;
+    padding-right:$gutter-width-md/2;
+  }
+  @include  breakpoint-lg {
+    padding-left:$gutter-width-lg/2;
+    padding-right:$gutter-width-lg/2;
+  }
+  @include  breakpoint-xlg {
+    padding-left:$gutter-width-xlg/2;
+    padding-right:$gutter-width-xlg/2;
+  }
+}
+
+
+@mixin column($col, $sum, $with-gutter:true) {
+
+  float:left;
+  width:percentage($col/$sum);
+
+  @if $with-gutter == true {
+    @include gutterize;
+  }
+  @else {
+    padding-left:0;
+    padding-right:0;
+  }
+
+}
+
+
+// Sets container styles
+@mixin container($with-gutter:false) {
+
+  @if $with-gutter == true {
+    @include gutterize;
+  }
+
+  width: 100%;
+  margin-left:auto;
+  margin-right:auto;
+
+  @include clearfix;
+
+  max-width: $grid-row-width-xs;
+
+  @include breakpoint-xsm {
+    max-width: $grid-row-width-xsm;
+  }
+  @include  breakpoint-sm {
+    max-width: $grid-row-width-sm;
+  }
+  @include  breakpoint-md {
+    max-width: $grid-row-width-md;
+  }
+  @include  breakpoint-lg {
+    max-width: $grid-row-width-lg;
+  }
+  @include  breakpoint-xlg {
+    max-width: $grid-row-width-xlg;
+  }
+}
+
+
+// Sets container styles
+@mixin half-container-size($with-gutter:false) {
+
+  @if $with-gutter == true {
+    @include gutterize;
+  }
+  
+  width: 100%;
+
+  max-width: $grid-row-width-xs/2;
+
+  @include breakpoint-xsm {
+    max-width: $grid-row-width-xsm/2;
+  }
+  @include  breakpoint-sm {
+    max-width: $grid-row-width-sm/2;
+  }
+  @include  breakpoint-md {
+    max-width: $grid-row-width-md/2;
+  }
+  @include  breakpoint-lg {
+    max-width: $grid-row-width-lg/2;
+  }
+  @include  breakpoint-xlg {
+    max-width: $grid-row-width-xlg/2;
+  }
+}
+
+
+
+// Sets grid offet margin
+@mixin offset($col, $sum, $direction:'left') {
+    margin-#{$direction}: percentage($col/$sum);
+}

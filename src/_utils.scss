@@ -1,0 +1,96 @@
+// Utility for prefixing mixins
+@mixin prefixer($property, $value, $prefixes: webkit moz) {
+  $valid: false;
+  @if type-of($property) == "string" {
+    $valid: true;
+  }
+  @if type-of($prefixes) == "list" {
+    $valid: true;
+  }
+  @if type-of($prefixes) == "string" {
+    $valid: true;
+  }
+  @if $valid == true {
+    @each $prefix in $prefixes {
+      #{"-" + $prefix + "-" + $property}: $value;
+    }
+    #{$property}: $value;
+  } @else {
+    @warn "Invalid arguments supplied";
+  }
+}
+
+// Clearfix include
+@mixin clear($extend: true) {
+  $valid: true;
+  @if type-of($extend) != "bool" {
+    @warn "extend: #{$extend} is not a boolean";
+    $valid: false;
+  }
+  @if $valid == true {
+    @if $extend {
+      @extend %clear;
+    }
+    @else {
+      #{'&'}:after {
+      content:"";
+      display:table;
+      clear:both;
+      }
+    }
+  }
+}
+
+//Alias for rem-calc
+@mixin clearfix($extend: true){
+  @include clear($extend);
+}
+
+// Placeholder for clear
+%clear:after {
+  content:"";
+  display:table;
+  clear:both;
+}
+
+// Text hider
+
+@mixin hide-text($extend: true) {
+  $valid: true;
+  @if type-of($extend) != "bool" {
+    @warn "extend: #{$extend} is not a boolean";
+    $valid: false;
+  }
+  @if $valid == true {
+    @if $extend {
+      @extend %hide-text;
+    }
+    @else {
+    overflow:hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+    }
+  }
+}
+
+// Placeholder for hide-text
+%hide-text {
+  overflow:hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+}
+
+
+// Wraps interior content in a media query
+@mixin breakpoint($querystring) {
+  $valid: true;
+  @if type-of($querystring) != "string" {
+    @warn "querystring: #{$querystring} is not a string";
+    $valid: false;
+  }
+  @if $valid == true {
+    @media #{$querystring} {
+      @content;
+    }
+  }
+}
