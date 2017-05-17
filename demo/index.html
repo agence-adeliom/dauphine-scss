@@ -93,6 +93,14 @@ and open the template in the editor.
             .box {
               @include gutterize;
             }
+            //only gutter on left side
+            .box {
+              @include gutterize(true, false);
+            }
+            //only gutter on right side
+            .box {
+              @include gutterize(false, true);
+            }
           </code>
         </div>
       </div>
@@ -108,12 +116,26 @@ and open the template in the editor.
             
             <li>int <strong>$col</strong>: Number of columns</li>
             <li>int <strong>$sum</strong>: Total columns</li>
-            <li>bool <strong>$with-gutter</strong>: Add gutter (default true)</li>
+            <li>bool/string <strong>$with-gutter</strong>: true = add gutter, false = no gutter, 'left' = only left gutter, right = only right gutter </li>
           </ul>
           <code>
+            //with gutter
             .box {
-              @include column(2, 12, true);
+              @include column(2, 12);
             }
+            //no gutter
+            .box {
+              @include column(2, 12, false);
+            }
+            //left gutter
+            .box {
+              @include column(2, 12, 'left');
+            }
+            //right gutter
+            .box {
+              @include column(2, 12, 'right');
+            }
+            
           </code>
         </div>
       </div>
@@ -257,6 +279,7 @@ and open the template in the editor.
           </div>
 
         </div>
+
         <div class="clearfix">
           
           <div class="column col-test-5">
@@ -275,6 +298,25 @@ and open the template in the editor.
 @include breakpoint-xsm {
   @include column(1, 2, false);
 }
+            </code>
+          </div>
+          
+        </div>
+
+        <div class="clearfix">
+          
+          <div class="column col-test-6">
+            <strong>With gutter left</strong><br />
+            <code class="props">
+
+@include column(1, 2, 'left');
+
+            </code>
+          </div>
+          <div class="column col-test-7">
+            <strong>With gutter right</strong><br />
+            <code class="props">
+@include column(1, 2, 'right');
             </code>
           </div>
           

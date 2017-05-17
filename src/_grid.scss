@@ -73,29 +73,53 @@ $grid-row-width-lg:  1200px;
 $grid-row-width-xlg: 1400px;
 
 
-@mixin gutterize() {
-  padding-left:$gutter-width-xs/2;
-  padding-right:$gutter-width-xs/2;
+@mixin gutterize($left:true, $right:true) {
+  @if $left == true {
+    padding-left:$gutter-width-xs/2;
+  }
+  @if $right == true {
+    padding-right:$gutter-width-xs/2;
+  }
 
   @include breakpoint-xsm {
-    padding-left:$gutter-width-xsm/2;
-    padding-right:$gutter-width-xsm/2;
+    @if $left == true {
+      padding-left:$gutter-width-xsm/2;
+    }
+    @if $right == true {
+      padding-right:$gutter-width-xsm/2;
+    }
   }
   @include  breakpoint-sm {
-    padding-left:$gutter-width-sm/2;
-    padding-right:$gutter-width-sm/2;
+    @if $left == true {
+      padding-left:$gutter-width-sm/2;
+    }
+    @if $right == true {
+      padding-right:$gutter-width-sm/2;
+    }
   }
   @include  breakpoint-md {
-    padding-left:$gutter-width-md/2;
-    padding-right:$gutter-width-md/2;
+    @if $left == true {
+      padding-left:$gutter-width-md/2;
+    }
+    @if $right == true {
+      padding-right:$gutter-width-md/2;
+    }
   }
   @include  breakpoint-lg {
-    padding-left:$gutter-width-lg/2;
-    padding-right:$gutter-width-lg/2;
+    @if $left == true {
+      padding-left:$gutter-width-lg/2;
+    }
+    @if $right == true {
+      padding-right:$gutter-width-lg/2;
+    }
   }
   @include  breakpoint-xlg {
-    padding-left:$gutter-width-xlg/2;
-    padding-right:$gutter-width-xlg/2;
+    @if $left == true {
+      padding-left:$gutter-width-xlg/2;
+    }
+    @if $right == true {
+      padding-right:$gutter-width-xlg/2;
+    }
   }
 }
 
@@ -108,6 +132,12 @@ $grid-row-width-xlg: 1400px;
   @if $with-gutter == true {
     @include gutterize;
   }
+  @else if $with-gutter == 'left' {
+    @include gutterize(true, false);
+  } 
+  @else if $with-gutter == 'right' {
+    @include gutterize(false, true);
+  } 
   @else {
     padding-left:0;
     padding-right:0;

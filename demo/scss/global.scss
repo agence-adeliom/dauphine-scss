@@ -108,8 +108,17 @@ code {
   
   @include gutterize;
 
-  @include gutterize;
   @include breakpoint-xsm {
     @include column(1, 2, false);
   }
+}
+
+.col-test-6{
+  border:rem(1) solid black;
+  @include column(1, 2, 'left');
+}
+
+.col-test-7{
+  border:rem(1) solid black;
+  @include column(1, 2, 'right');
 }
