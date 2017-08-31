@@ -1,4 +1,4 @@
-#Dauphine - Adeliom Animation SCSS
+#Dauphine
 
 Adeliom grid starter pack
 
