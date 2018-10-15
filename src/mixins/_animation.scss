@@ -1,0 +1,41 @@
+@mixin transition_default(){
+    transition: all $animation-hover ease-in-out;
+    -moz-transform: all $animation-hover ease-in-out;
+    -webkit-transform: all $animation-hover ease-in-out;
+    -o-transform: all $animation-hover ease-in-out;
+    -ms-transform: all $animation-hover ease-in-out;
+}
+
+@mixin transition_color(){
+    transition: color $animation-hover ease-in-out;
+    -moz-transform: color $animation-hover ease-in-out;
+    -webkit-transform: color $animation-hover ease-in-out;
+    -o-transform: color $animation-hover ease-in-out;
+    -ms-transform: color $animation-hover ease-in-out;
+}
+
+@mixin transition($time, $type:all,  $effect:ease-in-out){
+    transition: $type $time  $effect;
+    -moz-transform: $type $time  $effect;
+    -webkit-transform: $type $time  $effect;
+    -o-transform: $type $time  $effect;
+    -ms-transform: $type $time  $effect;
+}
+
+@mixin keyframes($animation) {
+    @-webkit-keyframes #{$animation} {
+        @content;
+    }
+    @-moz-keyframes #{$animation} {
+        @content;
+    }
+    @-ms-keyframes #{$animation} {
+        @content;
+    }
+    @-o-keyframes #{$animation} {
+        @content;
+    }
+    @keyframes #{$animation} {
+        @content;
+    }
+}

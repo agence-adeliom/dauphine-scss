@@ -1,0 +1,57 @@
+@import './_naked-dauphine';
+
+@import './src/mixins/_grid-framework';
+
+@import './src/utilities/_flex';
+@import './src/utilities/_display';
+@import './src/utilities/_spacing';
+@import './src/utilities/_sizing';
+
+// Columns
+@include make-grid-columns();
+
+.container{
+    @include container(true);
+    @include container-max-widths();
+}
+
+.container-fluid{
+    @include container(true);
+}
+
+.row{
+    @include flex-row();
+
+    .no-gutters {
+        margin-right: 0;
+        margin-left: 0;
+
+        > .col,
+        > [class*="col-"] {
+          padding-right: 0;
+          padding-left: 0;
+        }
+    }
+}
+
+.clearfix{
+    @include clearfix();
+}
+
+.full-link{
+    @include full();
+}
+
+.img-fluid{
+    @include img-fluid();
+}
+
+.visible {
+    @include invisible(visible);
+}
+
+.invisible {
+    @include invisible(hidden);
+}
+
+

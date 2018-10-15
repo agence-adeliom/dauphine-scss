@@ -1,0 +1,26 @@
+@mixin clearfix() {
+  &::after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+}
+
+@mixin invisible($visibility, $breakpoint: '') {
+
+  @if $breakpoint {
+    @include breakpoint($breakpoint){
+      visibility: $visibility !important;
+    }
+  }
+  @else {
+    visibility: $visibility !important;
+  }
+
+}
+
+@mixin text-truncate() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

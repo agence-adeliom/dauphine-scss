@@ -1,0 +1,135 @@
+/******************************
+**
+** Container/Gutters
+**
+******************************/
+html {
+  font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
+}
+
+html body {
+  line-height: 1.75;
+}
+
+html h1 {
+  font-size: 35px;
+  font-size: 2.1875rem;
+}
+
+html h2 {
+  font-size: 31px;
+  font-size: 1.9375rem;
+}
+
+html h3 {
+  font-size: 27px;
+  font-size: 1.6875rem;
+}
+
+html h4 {
+  font-size: 24px;
+  font-size: 1.5rem;
+}
+
+html h5 {
+  font-size: 21px;
+  font-size: 1.3125rem;
+}
+
+html h6 {
+  font-size: 18px;
+  font-size: 1.125rem;
+}
+
+html p {
+  font-size: 16px;
+  font-size: 1rem;
+}
+
+body {
+  padding-bottom: 100px;
+}
+
+.box {
+  margin-bottom: 2.5rem;
+}
+
+.box .box-head {
+  text-align: center;
+}
+
+code {
+  background: #eee;
+  border: 0.0625rem solid #ddd;
+  border-radius: 0.1875rem;
+  color: #aaa;
+  display: block;
+  font-family: monospace;
+  white-space: pre-wrap;
+  width: 100%;
+}
+
+.play-wrap {
+  padding-bottom: 3.125rem;
+}
+
+.play-wrap::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+
+.props {
+  font-family: monospace;
+  border-radius: 0.1875rem;
+  margin: 0.3125rem 0;
+  background: #efefef;
+  font-size: 0.875rem;
+}
+
+.inner {
+  background-color: grey;
+  height: 50px;
+  margin-bottom: 30px;
+}
+
+.w-image {
+  position: relative;
+}
+
+.w-image:after {
+  content: "";
+  display: block;
+}
+
+.w-image:after {
+  padding-top: 60%;
+}
+
+@media (min-width: 720px) {
+  .w-image:after {
+    padding-top: 26%;
+  }
+}
+
+@media (min-width: 960px) {
+  .w-image:after {
+    padding-top: 30%;
+  }
+}
+
+@media (min-width: 960px) {
+  .w-image:after {
+    padding-top: 35%;
+  }
+}
+
+.w-image .image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+/*# sourceMappingURL=global.css.map */

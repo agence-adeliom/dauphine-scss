@@ -1,0 +1,22 @@
+@each $breakpoint in map-keys($grid-breakpoints) {
+    @include breakpoint($breakpoint) {
+      $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+      @if $breakpoint != 'xsm' and $breakpoint != 'xlg'{
+      // Some special margin utils
+      .m#{$infix}-auto { margin: auto !important; }
+      .mt#{$infix}-auto {
+        margin-top: auto !important;
+      }
+      .mr#{$infix}-auto{
+        margin-right: auto !important;
+      }
+      .mb#{$infix}-auto{
+        margin-bottom: auto !important;
+      }
+      .ml#{$infix}-auto{
+        margin-left: auto !important;
+      }
+    }
+  }
+}

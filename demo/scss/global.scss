@@ -1,24 +1,15 @@
-@import '../../dauphine';
-
+@import '../../_naked-dauphine';
 
 html{  font-family:"Lucida Grande", Tahoma, Verdana, Arial, sans-serif; @include type(16px, 28px, 1.14); }
 
-.container{
-  @include container;
-  
-  @include gutterize;
-}
-
-.clearfix{
-  @include clearfix();
+body{
+  padding-bottom: 100px;
 }
 
 .box {
   margin-bottom:rem(40);
   .box-head{ @include txt-center; }
-  
 }
-
 
 code {
     background: #eee;
@@ -27,10 +18,8 @@ code {
     color: #aaa;
     display: block;
     font-family: monospace;
-
     white-space: pre-wrap;
     width: 100%;
-
 }
 
 
@@ -48,77 +37,19 @@ code {
   font-size:rem(14);
 }
 
-
-.col-test-1{
-  border:rem(1) solid olive;
-  
-  @include gutterize;
-  
-  @include  breakpoint-sm {
-    @include column(6, 12);
-  }
-  @include  breakpoint-md {
-    @include column(2, 12);
-  }
+.inner{
+  background-color: grey;
+  height: 50px;
+  margin-bottom: 30px;
 }
 
-.col-test-2{
-  border:rem(1) solid pink;
-
-  @include  breakpoint-sm {
-    @include column(6, 12, false);
+.w-image{
+  @include img-homothetic-init();
+  @include img-homothetic(60%, xs);
+  @include img-homothetic(26%, sm);
+  @include img-homothetic(30%, md);
+  @include img-homothetic(35%, md);
+  .image{
+    @include img-homothetic-inner();
   }
-  
-  @include  breakpoint-md {
-    @include column(2, 12, false);
-    @include offset(1, 12, right);
-  }
-  
-}
-
-.col-test-3{ 
-  border:rem(1) solid blue;
-  
-  @include  breakpoint-sm {
-    @include column(6, 12, false);
-  }
-  @include  breakpoint-md {
-    @include column(3, 12, false);
-  }
-
-}
-
-.col-test-4{ 
-  border:rem(1) solid violet;
-  
-  @include gutterize;
-  
-  @include  breakpoint-sm {
-    @include column(6, 12);
-  }
-  @include  breakpoint-md {
-    @include column(2, 12);
-    @include offset(2, 12);
-  }
-
-}
-
-.col-test-5{
-  border:rem(1) solid DeepSkyBlue;
-  
-  @include gutterize;
-
-  @include breakpoint-xsm {
-    @include column(1, 2, false);
-  }
-}
-
-.col-test-6{
-  border:rem(1) solid black;
-  @include column(1, 2, 'left');
-}
-
-.col-test-7{
-  border:rem(1) solid black;
-  @include column(1, 2, 'right');
 }

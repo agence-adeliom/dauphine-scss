@@ -1,6 +1,10 @@
-@import './src/_utils';
-@import './src/_typography';
-@import './src/_animation';
-@import './src/_style';
+@import './src/_variables';
 
-@import './src/_grid';
+@import './src/mixins/_breakpoint';
+@import './src/mixins/_grid';
+
+@import './src/mixins/_utils';
+@import './src/mixins/_typography';
+@import './src/mixins/_animation';
+
+@import './src/mixins/_style';
