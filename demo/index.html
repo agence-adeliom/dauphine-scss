@@ -12,6 +12,7 @@ and open the template in the editor.
 
     <link rel='stylesheet' href='../dauphine.css' type='text/css' media='all' />
     <link rel='stylesheet' href='../starter.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='../class.css' type='text/css' media='all' />
 
     <link rel='stylesheet' href='./scss/global.css' type='text/css' media='all' />
 
@@ -228,8 +229,7 @@ and open the template in the editor.
 
       <div class="box">
         <header class="box-head">
-          <h2>Starter class</h2>
-          <a href="http://getbootstrap.com/docs/4.1/layout/grid/">http://getbootstrap.com/docs/4.1/layout/grid/</a><br>
+          <h2>Available class</h2><br/>
           <a href="http://getbootstrap.com/docs/4.1/utilities/flex/">http://getbootstrap.com/docs/4.1/utilities/flex/</a><br>
           <a href="http://getbootstrap.com/docs/4.1/utilities/display/">http://getbootstrap.com/docs/4.1/utilities/display/</a>
         </header>
@@ -255,6 +255,70 @@ and open the template in the editor.
       <div class="w-image">
         <div class="image" style="background:url('http://via.placeholder.com/1920x1080') center / cover"></div>
       </div>
+
+      </div>
+
+      <div class="play-wrap container">
+
+        <h1>Grid with Class <a href="http://getbootstrap.com/docs/4.1/layout/grid/">http://getbootstrap.com/docs/4.1/layout/grid/</a></h1>
+        <div class="row">
+          <div class="col-6 col-sm-4 col-md-6">
+            <div class="inner">.col-6 .col-sm-4 .col-md-2</div>
+          </div>
+          <div class="col-6 col-sm-4 col-md-6">
+            <div class="inner">.col-6 .col-sm-4 .col-md-2</div>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="inner">.col-md-4</div>
+            </div>
+            <div class="col-md-4 offset-md-4">
+                <div class="inner">.col-md-4 .offset-md-4</div>
+            </div>
+          </div>
+        
+        <div class="row">
+            <div class="col-md-4"><div class="inner">.col-md-4</div></div>
+            <div class="col-md-4 ml-auto"><div class="inner">.col-md-4 .ml-auto</div></div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 ml-md-auto"><div class="inner">.col-md-3 .ml-md-auto</div></div>
+          <div class="col-md-3 ml-md-auto"><div class="inner">.col-md-3 .ml-md-auto</div></div>
+        </div>
+        <div class="row">
+          <div class="col-auto mr-auto"><div class="inner">.col-auto .mr-auto</div></div>
+          <div class="col-auto"><div class="inner">.col-auto</div></div>
+        </div> 
+
+      </div>
+
+      <div class="play-wrap container">
+
+          <h1>Grid with SASS</h1>
+          <code>
+          .w-article{
+            @include flex-col(12);
+            @include breakpoint(md){
+              @include flex-col(4);
+            }
+          }
+          </code>
+          <div class="play-wrap"></div>
+          <div class="row">
+            <div class="w-article">
+              <div class="inner">col-6</div>
+            </div>
+            <div class="w-article">
+              <div class="inner">col-6</div>
+            </div>
+            <div class="w-article">
+                <div class="inner">col-6</div>
+              </div>
+          </div>
+        </div>
+
 
     </body>
 </html>

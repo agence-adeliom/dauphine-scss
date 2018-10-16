@@ -37,6 +37,18 @@
   }
 }
 
+@mixin center-vertical(){
+  @include center(vertical);
+}
+
+@mixin center-horizontal(){
+  @include center(horizontal);
+}
+
+@mixin center-both(){
+  @include center(both);
+}
+
 @mixin full {
   position: absolute;
   top: 0;

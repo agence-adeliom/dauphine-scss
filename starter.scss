@@ -1,15 +1,5 @@
 @import './_naked-dauphine';
 
-@import './src/mixins/_grid-framework';
-
-@import './src/utilities/_flex';
-@import './src/utilities/_display';
-@import './src/utilities/_spacing';
-@import './src/utilities/_sizing';
-
-// Columns
-@include make-grid-columns();
-
 .container{
     @include container(true);
     @include container-max-widths();
