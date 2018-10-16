@@ -16,7 +16,7 @@
 
 }
 
-@mixin column($col, $sum: $grid-columns, $with-gutter:true, $float: false) {
+@mixin col($col, $sum: $grid-columns, $with-gutter:true, $float: false) {
 
   width:percentage($col/$sum);
 
