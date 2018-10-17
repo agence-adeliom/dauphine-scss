@@ -223,6 +223,8 @@ and open the template in the editor.
             @include img-fluid();
 
             @include full();
+
+            @include center(horizontal) => arguments : horizontal, vertical, both
           </code>
         </div>
       </div>
@@ -308,14 +310,35 @@ and open the template in the editor.
           <div class="play-wrap"></div>
           <div class="row">
             <div class="w-article">
-              <div class="inner">col-6</div>
+              <div class="inner">col-4</div>
             </div>
             <div class="w-article">
-              <div class="inner">col-6</div>
+              <div class="inner">col-4</div>
             </div>
             <div class="w-article">
-                <div class="inner">col-6</div>
+                <div class="inner">col-4</div>
               </div>
+          </div>
+        </div>
+
+        <div class="play-wrap container">
+
+          <code>
+          .w-box{
+            @include flex-col(4);
+            &:nth-of-type(2){
+              margin-left: auto;
+            }
+          }
+          </code>
+          <div class="play-wrap"></div>
+          <div class="row">
+            <div class="w-box">
+              <div class="inner">col-4</div>
+            </div>
+            <div class="w-box">
+              <div class="inner">col-6 / margin-left: auto</div>
+            </div>
           </div>
         </div>
 
