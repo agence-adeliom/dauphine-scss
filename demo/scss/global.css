@@ -3,6 +3,34 @@
 ** Container/Gutters
 **
 ******************************/
+.play-wrap::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+
+.box .box-head {
+  text-align: center;
+}
+
+.w-image {
+  position: relative;
+}
+
+.w-image:after {
+  content: "";
+  display: block;
+}
+
+.w-image .image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
 html {
   font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
 }
@@ -39,10 +67,6 @@ p {
   margin-bottom: 40px;
 }
 
-.box .box-head {
-  text-align: center;
-}
-
 code {
   background: #eee;
   border: 1px solid #ddd;
@@ -59,12 +83,6 @@ code {
   padding-top: 50px;
 }
 
-.play-wrap::after {
-  display: block;
-  clear: both;
-  content: "";
-}
-
 .props {
   font-family: monospace;
   border-radius: 3px;
@@ -77,15 +95,6 @@ code {
   background-color: grey;
   height: 50px;
   margin-bottom: 30px;
-}
-
-.w-image {
-  position: relative;
-}
-
-.w-image:after {
-  content: "";
-  display: block;
 }
 
 .w-image:after {
@@ -108,15 +117,6 @@ code {
   .w-image:after {
     padding-top: 35%;
   }
-}
-
-.w-image .image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
 }
 
 .w-article {

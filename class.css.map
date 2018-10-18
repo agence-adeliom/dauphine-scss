@@ -11,11 +11,11 @@
         "src/mixins/_typography.scss",
         "src/mixins/_animation.scss",
         "src/mixins/_style.scss",
-        "src/mixins/_grid-framework.scss",
-        "src/utilities/_flex.scss",
-        "src/utilities/_display.scss",
-        "src/utilities/_spacing.scss",
-        "src/utilities/_sizing.scss"
+        "src/framework/_grid.scss",
+        "src/framework/_flex.scss",
+        "src/framework/_display.scss",
+        "src/framework/_spacing.scss",
+        "src/framework/_sizing.scss"
     ],
     "names": [],
     "file": "class.css"

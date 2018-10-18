@@ -1,9 +1,21 @@
-@mixin clearfix() {
+%clearfix {
   &::after {
     display: block;
     clear: both;
     content: "";
   }
+}
+@mixin text-truncate(){
+  @extend %clearfix;
+}
+
+%text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@mixin text-truncate(){
+  @extend %text-truncate;
 }
 
 @mixin invisible($visibility, $breakpoint: '') {
@@ -17,10 +29,4 @@
     visibility: $visibility !important;
   }
 
-}
-
-@mixin text-truncate() {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }

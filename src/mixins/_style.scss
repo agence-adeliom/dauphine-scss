@@ -1,24 +1,23 @@
-@mixin naked(){ padding:0; margin:0; list-style:none; list-style-image:none; }
+%naked{ padding:0; margin:0; list-style:none; list-style-image:none; }
 
-@mixin b(){ font-weight:bold; }
-@mixin i(){ font-style:italic; }
-@mixin u(){ text-decoration:underline; }
-@mixin weight-normal(){ font-weight:normal; }
+%b{ font-weight:bold; }
+%i{ font-style:italic; }
+%u{ text-decoration:underline; }
+%weight-normal{ font-weight:normal; }
 
-@mixin uc(){ text-transform:uppercase; }
-@mixin lc(){ text-transform:lowercase; }
-@mixin nc(){ text-transform:none; }
+%uc{ text-transform:uppercase; }
+%lc{ text-transform:lowercase; }
+%nc{ text-transform:none; }
 
+%txt-center{ text-align:center; }
+%txt-left{ text-align:left; }
+%txt-right{ text-align:right; }
+%txt-justify{ text-align:justify; }
 
-@mixin txt-center(){ text-align:center; }
-@mixin txt-left(){ text-align:left; }
-@mixin txt-right(){ text-align:right; }
-@mixin txt-justify(){ text-align:justify; }
-
-
-@mixin absolute-full(){ position:absolute; top:0; left:0; right:0; bottom:0; }
-
-@mixin truncate(){ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+%absolute-full{ position:absolute; top:0; left:0; right:0; bottom:0; }
+@mixin absolute-full(){
+  @extend %absolute-full;
+}
 
 @mixin center($position) {
   position: absolute;
@@ -49,7 +48,7 @@
   @include center(both);
 }
 
-@mixin full {
+%full {
   position: absolute;
   top: 0;
   left: 0;
@@ -57,18 +56,37 @@
   width: 100%;
   height: 100%;
 }
+@mixin full(){
+  @extend %full;
+}
 
-@mixin img-fluid {
+%bg-center {
+  width: 100%;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+@mixin bg-center(){
+  @extend %bg-center;
+}
+
+%img-fluid {
   max-width: 100%;
   height: auto;
 }
+@mixin img-fluid(){
+  @extend %img-fluid;
+}
 
-@mixin img-homothetic-init() {
+%img-homothetic-init {
   position: relative;
   &:after{
     content: "";
     display: block;
   }
+}
+@mixin img-fluid(){
+  @extend %img-homothetic-init;
 }
 
 @mixin img-homothetic($value, $breakpoint){
@@ -84,11 +102,14 @@
   }
 }
 
-@mixin img-homothetic-inner(){
+%img-homothetic-inner {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
   overflow: hidden;
+}
+@mixin img-homothetic-inner(){
+  @extend %img-homothetic-inner;
 }

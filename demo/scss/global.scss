@@ -34,7 +34,7 @@ p{
 
 .box {
   margin-bottom:rem(40);
-  .box-head{ @include txt-center; }
+  .box-head{ @extend %txt-center; }
 }
 
 code {
@@ -53,7 +53,7 @@ code {
 //Playground
 .play-wrap{
   padding-top:rem(50);
-  @include clearfix;
+  @extend %clearfix;
 }
 
 .props{
@@ -71,13 +71,13 @@ code {
 }
 
 .w-image{
-  @include img-homothetic-init();
+  @extend %img-homothetic-init;
   @include img-homothetic(60%, xs);
   @include img-homothetic(26%, sm);
   @include img-homothetic(30%, md);
   @include img-homothetic(35%, md);
   .image{
-    @include img-homothetic-inner();
+    @extend %img-homothetic-inner;
   }
 }
 

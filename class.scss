@@ -1,11 +1,10 @@
 @import './_naked-dauphine';
 
-@import './src/mixins/_grid-framework';
-
-@import './src/utilities/_flex';
-@import './src/utilities/_display';
-@import './src/utilities/_spacing';
-@import './src/utilities/_sizing';
+@import './src/framework/_grid';
+@import './src/framework/_flex';
+@import './src/framework/_display';
+@import './src/framework/_spacing';
+@import './src/framework/_sizing';
 
 // Columns
 @include make-grid-columns();
