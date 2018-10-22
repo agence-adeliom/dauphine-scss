@@ -79,16 +79,20 @@
 
 %img-homothetic-init {
   position: relative;
+  overflow: hidden;
   &:after{
     content: "";
     display: block;
   }
 }
-@mixin img-fluid(){
+@mixin img-homothetic-init(){
+  @extend %img-homothetic-init;
+}
+@mixin bg-homothetic-init(){
   @extend %img-homothetic-init;
 }
 
-@mixin img-homothetic($value, $breakpoint){
+@mixin img-homothetic($value, $breakpoint:null){
   &:after{
     @if $breakpoint {
       @include breakpoint($breakpoint){
@@ -101,6 +105,11 @@
   }
 }
 
+@mixin bg-homothetic($value, $breakpoint){
+  @include img-homothetic($value, $breakpoint);
+}
+
+
 %img-homothetic-inner {
   position: absolute;
   top: 0;
@@ -111,4 +120,15 @@
 }
 @mixin img-homothetic-inner(){
   @extend %img-homothetic-inner;
+}
+
+%bg-homothetic-inner {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+}
+@mixin bg-homothetic-inner(){
+  @extend %bg-homothetic-inner;
 }
