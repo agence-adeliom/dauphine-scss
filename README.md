@@ -4,20 +4,20 @@ Adeliom grid starter pack
 
 ## How to install Dauphine
 
-###With npm
 ```
-$ npm install https://bitbucket.org/adeliomgit/dauphine-scss.git --save
-```
-
-###With bower
-```
-$ bower install https://bitbucket.org/adeliomgit/dauphine-scss.git --save
+yarn add https://bitbucket.org/adeliomgit/dauphine-scss.git
 ```
 
 ## How to use Dauphine
 
-import dauphine.scss in your projet
+### Import core
+@import "~dauphine/_dauphine";
 
-TODO: Document 
+### Import mixins
+@import "~dauphine/_mixins";
 
-Documentation is missing for now, you can refer to the demo folder and check the index.html to see example of implementation
+### Import starter with some useful basic classes
+@import "~dauphine/_starter";
+
+### Import class for grid (like bootstrap)
+@import "~dauphine/_framework";

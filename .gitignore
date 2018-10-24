@@ -23,5 +23,4 @@ yarn-error.log*
 
 nbproject
 
-*.css
 *.css.map
