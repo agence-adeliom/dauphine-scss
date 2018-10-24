@@ -65,9 +65,22 @@
     }
   }
 
+  // Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
+  // Makes the @content apply to the given breakpoint and wider.
+  @mixin breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+    $min: breakpoint-min($name, $breakpoints);
+    @if $min {
+      @media (min-width: $min) {
+        @content;
+      }
+    } @else {
+      @content;
+    }
+  }
+
   // Media of at most the maximum breakpoint width. No query for the largest breakpoint.
   // Makes the @content apply to the given breakpoint and narrower.
-  @mixin breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  @mixin breakpoint-min($name, $breakpoints: $grid-breakpoints) {
     $max: breakpoint-max($name, $breakpoints);
     @if $max {
       @media (max-width: $max) {
@@ -89,11 +102,11 @@
         @content;
       }
     } @else if $max == null {
-      @include breakpoint-up($lower, $breakpoints) {
+      @include breakpoint-max($lower, $breakpoints) {
         @content;
       }
     } @else if $min == null {
-      @include breakpoint-down($upper, $breakpoints) {
+      @include breakpoint-min($upper, $breakpoints) {
         @content;
       }
     }
@@ -111,13 +124,27 @@
         @content;
       }
     } @else if $max == null {
-      @include breakpoint-up($name, $breakpoints) {
+      @include breakpoint-max($name, $breakpoints) {
         @content;
       }
     } @else if $min == null {
-      @include breakpoint-down($name, $breakpoints) {
+      @include breakpoint-min($name, $breakpoints) {
         @content;
       }
+    }
+  }
+
+
+  // Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
+  // Makes the @content apply to the given breakpoint and wider.
+  @mixin breakpoint($name, $breakpoints: $grid-breakpoints) {
+    $min: breakpoint-min($name, $breakpoints);
+    @if $min {
+      @media (min-width: $min) {
+        @content;
+      }
+    } @else {
+      @content;
     }
   }
 
@@ -152,11 +179,11 @@
         @content;
       }
     } @else if $max == null {
-      @include breakpoint-up($lower, $breakpoints) {
+      @include breakpoint-height-min($lower, $breakpoints) {
         @content;
       }
     } @else if $min == null {
-      @include breakpoint-down($upper, $breakpoints) {
+      @include breakpoint-height-max($upper, $breakpoints) {
         @content;
       }
     }

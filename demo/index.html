@@ -33,14 +33,23 @@ and open the template in the editor.
           <code>
             /******************************
               **
-              ** breakpoints
+              ** Breakpoints Width
               **
               ******************************/
-              xsm: 480px => phone-landscape
-              sm: 720px => tablet-portrait
-              md: 960px => tablet-landscape
-              lg: 1280px => desktop
-              xlg: 1600px => desktop large
+              xsm: 480px /*phone-landscape*/
+              sm: 720px /*tablet-portrait*/
+              md: 960px /*tablet-landscape*/
+              lg: 1280px /*desktop*/
+              xlg: 1600px /*desktop large*/
+          </code>
+          <code>
+            /******************************
+              **
+              ** Breakpoints Height
+              **
+              ******************************/
+              xsm: 500px /*phone-landscape*/
+              sm: 800px /*tablet-landscape*/
           </code>
         </div>
       </div>
@@ -54,29 +63,44 @@ and open the template in the editor.
             <code>
               // Min-width
               div {
-                  @include  breakpoint(xsm) { } => mobile-landscape
-                  @include  breakpoint(sm) { } => tablet-portrait
-                  @include  breakpoint(md) { } => tablet-landscape
-                  @include  breakpoint(lg) { } => desktop
-                  @include  breakpoint(xlg) { } => desktop large
+                  @include  breakpoint(xsm) { } /*mobile-landscape*/
+                  @include  breakpoint(sm) { } /*tablet-portrait*/
+                  @include  breakpoint(md) { } /*tablet-landscape*/
+                  @include  breakpoint(lg) { } /*desktop*/
+                  @include  breakpoint(xlg) { } /*desktop large*/
               }
   
               // Max-width
               div {
-                  @include  breakpoint-max(xsm) { } => mobile-landscape
+                  @include  breakpoint-max(xsm) { } /*mobile-landscape*/
                   ...
               }
   
               // Only one breakpoint
               div {
-                  @include  breakpoint-only(sm) { } => only tablet-portrait
+                  @include  breakpoint-only(sm) { } /*only tablet-portrait*/
                   ...
               }
   
               // Bewteen 2 breakpoints
               div {
-                  @include  breakpoint-between(sm, lg) { } => tablet-portrait => desktop large
+                  @include  breakpoint-between(sm, lg) { } /*tablet-portrait => desktop large*/
                   ...
+              }
+
+              // Min-height
+              div{
+                @include  breakpoint-height-min(xsm) {...}
+              }
+
+              // Max-height
+              div{
+                @include  breakpoint-height-max(sm) {...}
+              }
+
+              // Between 2 heights
+              div{
+                @include  breakpoint-height-between(xs, sm) {...}
               }
             </code>
           </div>
@@ -220,13 +244,13 @@ and open the template in the editor.
 
             // utils
             @include text-truncate();
-            @include invisible(visible, sm); => 2nd argument : name of the breakpoint (xsm, sm, md...)
+            @include invisible(visible, sm); /*2nd argument : name of the breakpoint (xsm, sm, md...)*/
 
             @extend %img-fluid;
 
             @extend %full;
 
-            @include center(horizontal) => arguments : horizontal, vertical, both
+            @include center(horizontal) /*arguments : horizontal, vertical, both*/
           </code>
         </div>
       </div>
