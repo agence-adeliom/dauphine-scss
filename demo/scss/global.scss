@@ -1,6 +1,6 @@
 @import '../../_dauphine';
-@import '../../_starter';
-@import '../../_framework';
+// @import '../../_starter';
+// @import '../../_framework';
 
 $debug-rem: true;
 
@@ -95,8 +95,4 @@ code {
   &:nth-of-type(2){
     margin-left: auto;
   }
-}
-
-h1{
-  @include font-size(rem(26), rem(50));
 }
