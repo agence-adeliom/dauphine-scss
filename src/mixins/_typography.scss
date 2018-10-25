@@ -79,7 +79,11 @@ $debug-rem: false !default;
   }
 }
 
-@mixin font-size($font-size, $line-height) {
+@mixin font-size($font-size, $line-height: null) {
   font-size: $font-size;
-  line-height: $line-height;
+  @if $line-height{
+    line-height: $line-height;
+  } @else{
+    line-height: $font-size;
+  }
 }
