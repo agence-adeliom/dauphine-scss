@@ -79,10 +79,7 @@ $debug-rem: false !default;
   }
 }
 
-@mixin font-size($font-size, $line-height:"") {
-  @if type-of($line-height) != "number" {
-    $line-height: $font-size;
-  }
-    font-size:$font-size;
-    line-height:$line-height;
+@mixin font-size($font-size, $line-height) {
+  font-size: $font-size;
+  line-height: $line-height;
 }

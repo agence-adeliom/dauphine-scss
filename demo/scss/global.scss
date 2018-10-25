@@ -96,3 +96,7 @@ code {
     margin-left: auto;
   }
 }
+
+h1{
+  @include font-size(rem(26), rem(50));
+}
