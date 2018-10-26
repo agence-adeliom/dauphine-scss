@@ -1,4 +1,6 @@
-@each $breakpoint in map-keys($grid-breakpoints) {
+@mixin make-display {
+
+  @each $breakpoint in map-keys($grid-breakpoints) {
     @include breakpoint($breakpoint) {
       $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
@@ -12,3 +14,5 @@
 
     }
   }
+
+}

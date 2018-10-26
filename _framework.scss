@@ -1,10 +1,42 @@
+// Import
 @import './_mixins';
 
 @import './src/framework/_grid';
-@import './src/framework/_flex';
+@import './src/framework/_direction';
 @import './src/framework/_display';
 @import './src/framework/_spacing';
 @import './src/framework/_sizing';
 
+// Variable by default
+$columns: true !default;
+$sizing: true !default;
+
+$order: false !default;
+$direction: false !default;
+$display: false !default;
+$spacing: false !default;
+
 // Columns
-@include make-grid-columns();
+@if($columns){
+    @include make-grid-columns();
+}
+
+// Order
+@if($order){
+    @include make-grid-order();
+}
+
+// Direction
+@if($direction){
+    @include make-direction();
+}
+
+// Display
+@if($display){
+    @include make-display();
+}
+
+// Spacing
+@if($spacing){
+    @include make-spacing();
+}

@@ -4,6 +4,8 @@ Created by: https://getbootstrap.com/
 
 */
 
-.mw-100 { max-width: 100% !important; }
-.mh-100 { max-height: 100% !important; }
-.w-100 { width: 100%!important; }
+@mixin make-sizing{
+    .mw-100 { max-width: 100% !important; }
+    .mh-100 { max-height: 100% !important; }
+    .w-100 { width: 100%!important; }
+}
