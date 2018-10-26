@@ -96,3 +96,15 @@ code {
     margin-left: auto;
   }
 }
+
+
+.w-grid{
+  div{
+    background-color: #999;
+  }
+}
+
+
+.w-grid{
+  @include w-grid(2fr 3fr 2fr, false);
+}

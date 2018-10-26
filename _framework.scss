@@ -1,7 +1,6 @@
 // Import
-@import './_mixins';
-
 @import './src/framework/_grid';
+@import './src/framework/_columns';
 @import './src/framework/_direction';
 @import './src/framework/_display';
 @import './src/framework/_spacing';
@@ -11,10 +10,16 @@
 $columns: true !default;
 $sizing: true !default;
 
+$grid: false !default;
 $order: false !default;
 $direction: false !default;
 $display: false !default;
 $spacing: false !default;
+
+// Grid
+@if($grid){
+    @include make-grid-display();
+}
 
 // Columns
 @if($columns){

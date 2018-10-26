@@ -1,5 +1,3 @@
-@import './_mixins';
-
 .container{
     @include container(true);
     @include container-max-widths();

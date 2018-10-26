@@ -1,92 +1,40 @@
-/*
+@mixin make-grid-display{
 
-Created by: https://getbootstrap.com/
-
-*/
-
-// Framework grid generation
-//
-// Used only by Bootstrap to generate the correct number of grid classes given
-// any value of `$grid-columns`.
-
-@mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
-  // Common properties for all breakpoints
-  %grid-column {
-    position: relative;
-    width: 100%;
-    min-height: 1px; // Prevent columns from collapsing when empty
-    padding-right: ($gutter / 2);
-    padding-left: ($gutter / 2);
+  %grid-display{
+    display: grid;
+    grid-gap: $grid-gutter-width;
   }
 
-  @each $breakpoint in map-keys($breakpoints) {
+  @each $breakpoint in map-keys($grid-breakpoints) {
 
     @if $breakpoint != 'xsm' and $breakpoint != 'xlg' {
 
-      $infix: breakpoint-infix($breakpoint, $breakpoints);
-  
-      // Allow columns to stretch full width below their breakpoints
-      @for $i from 1 through $columns {
-        .col#{$infix}-#{$i} {
-          @extend %grid-column;
+      $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+      
+      @for $i from 2 through 4 {
+        .w-grid#{$infix}-#{$i} {
+          @extend %grid-display;
         }
       }
-      .col#{$infix},
-      .col#{$infix}-auto {
-        @extend %grid-column;
-      }
-  
-      @include breakpoint($breakpoint, $breakpoints) {
-        // Provide basic `.col-{bp}` classes for equal-width flexbox columns
-        .col#{$infix} {
-          flex-basis: 0;
-          flex-grow: 1;
-          max-width: 100%;
-        }
-        .col#{$infix}-auto {
-          flex: 0 0 auto;
-          width: auto;
-          max-width: none; // Reset earlier grid tiers
-        }
-  
-        @for $i from 1 through $columns {
-          .col#{$infix}-#{$i} {
-            @include flex-col($i, $columns);
+
+      @include breakpoint($breakpoint, $grid-breakpoints) {
+        
+        @for $i from 2 through 4 {
+          .w-grid#{$infix}-#{$i} {
+            grid-template-columns: repeat($i, 1fr);
+          }
+
+          .w-grid#{$infix}-#{$i} {
+            grid-template-columns: repeat($i, 1fr);
+          }
+
+          .w-grid#{$infix}-#{$i} {
+            grid-template-columns: repeat($i, 1fr);
           }
         }
-  
-        // `$columns - 1` because offsetting by the width of an entire row isn't possible
-        @for $i from 0 through ($columns - 1) {
-          @if not ($infix == "" and $i == 0) { // Avoid emitting useless .offset-0
-            .offset#{$infix}-#{$i} {
-              @include offset($i, $columns);
-            }
-          }
-        }
+
       }
-    }
-  }
-}
-  
-@mixin make-grid-order($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
 
-  @each $breakpoint in map-keys($breakpoints) {
-
-    @if $breakpoint != 'xsm' and $breakpoint != 'xlg' {
-
-      $infix: breakpoint-infix($breakpoint, $breakpoints);
-  
-      @include breakpoint($breakpoint, $breakpoints) {
-  
-        .order#{$infix}-first { order: -1; }
-  
-        .order#{$infix}-last { order: $columns + 1; }
-  
-        @for $i from 0 through $columns {
-          .order#{$infix}-#{$i} { order: $i; }
-        }
-  
-      }
     }
   }
 }

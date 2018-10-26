@@ -1,0 +1,98 @@
+/******************************
+**
+** Container/Gutters
+**
+******************************/
+
+@mixin container($with-gutter:false) {
+
+  width: 100%;
+  margin-left:auto;
+  margin-right:auto;
+
+  @if $with-gutter == true {
+    @include gutterize;
+  }
+
+}
+
+@mixin col($col, $sum: $grid-columns, $with-gutter:true, $float: false) {
+
+  width:percentage($col/$sum);
+
+  @if $float == true {
+    float:left;
+  }
+
+  @if $with-gutter == true {
+    @include gutterize;
+  }
+  @else if $with-gutter == 'left' {
+    @include gutterize(true, false);
+  }
+  @else if $with-gutter == 'right' {
+    @include gutterize(false, true);
+  }
+  @else {
+    padding-left:0;
+    padding-right:0;
+  }
+
+}
+
+@mixin gutterize($left:true, $right:true) {
+
+  @if $left == true {
+    padding-left: $grid-gutter-width/2;
+  }
+  @if $right == true {
+    padding-right: $grid-gutter-width/2;
+  }
+
+}
+
+// For each breakpoint, define the maximum width of the container in a media query
+@mixin container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid-breakpoints) {
+  @each $breakpointt, $container-max-width in $max-widths {
+    @include breakpoint($breakpointt, $breakpoints) {
+      max-width: $container-max-width;
+    }
+  }
+}
+
+@mixin flex-row(){
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: ($grid-gutter-width / -2);
+  margin-left: ($grid-gutter-width / -2);
+}
+
+@mixin flex-col($col, $sum: $grid-columns, $with-gutter:true) {
+  flex: 0 0 percentage($col / $sum);
+  max-width: percentage($col / $sum);
+  @if $with-gutter == true {
+    @include gutterize;
+  }
+  @else if $with-gutter == 'left' {
+    @include gutterize(true, false);
+  }
+  @else if $with-gutter == 'right' {
+    @include gutterize(false, true);
+  }
+}
+
+@mixin flex-col-ready() {
+  position: relative;
+  // Prevent columns from becoming too narrow when at smaller grid tiers by
+  // always setting `width: 100%;`. This works because we use `flex` values
+  // later on to override this initial width.
+  width: 100%;
+  min-height: 1px; // Prevent collapsing
+  padding-right: ($grid-gutter-width / 2);
+  padding-left: ($grid-gutter-width / 2);
+}
+
+// Sets grid offet margin
+@mixin offset($col, $sum: $grid-columns, $direction:'left') {
+  margin-#{$direction}: percentage($col/$sum);
+}
