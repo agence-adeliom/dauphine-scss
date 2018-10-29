@@ -65,8 +65,11 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
-@mixin bg-center(){
+@mixin bg-center($url: null){
   @extend %bg-center;
+  @if $url{
+    background: url('#{$url}');
+  }
 }
 
 %img-fluid {

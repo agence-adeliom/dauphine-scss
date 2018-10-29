@@ -1,3 +1,5 @@
+$grid: true;
+
 @import '../../_dauphine';
 @import '../../_starter';
 @import '../../_framework';
@@ -102,9 +104,4 @@ code {
   div{
     background-color: #999;
   }
-}
-
-
-.w-grid{
-  @include w-grid(2fr 3fr 2fr, false);
 }
