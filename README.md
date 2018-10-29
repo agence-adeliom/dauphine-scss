@@ -29,3 +29,15 @@ yarn add https://bitbucket.org/adeliomgit/dauphine-scss.git
 ```
 @import "~dauphine/_framework";
 ```
+
+#### Available variables
+```
+$columns: true !default;
+$sizing: true !default;
+
+$grid: false !default;
+$order: false !default;
+$direction: false !default;
+$display: false !default;
+$spacing: false !default;
+```
