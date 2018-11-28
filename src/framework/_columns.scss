@@ -67,7 +67,14 @@ Created by: https://getbootstrap.com/
     }
   }
 }
-  
+
+@mixin order($infix, $columns){
+  .order#{$infix}-first { order: -1; }
+  .order#{$infix}-last { order: $columns + 1; }
+  @for $i from 0 through $columns {
+    .order#{$infix}-#{$i} { order: $i; }
+  }
+}
 @mixin make-grid-order($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
 
   @each $breakpoint in map-keys($breakpoints) {
@@ -75,18 +82,13 @@ Created by: https://getbootstrap.com/
     @if $breakpoint != 'xsm' and $breakpoint != 'xlg' {
 
       $infix: breakpoint-infix($breakpoint, $breakpoints);
-  
+
       @include breakpoint($breakpoint, $breakpoints) {
-  
-        .order#{$infix}-first { order: -1; }
-  
-        .order#{$infix}-last { order: $columns + 1; }
-  
-        @for $i from 0 through $columns {
-          .order#{$infix}-#{$i} { order: $i; }
-        }
-  
+        @include order($infix, $columns);
       }
     }
+  }
+  @include breakpoint-max(sm){
+    @include order('-xs', $columns);
   }
 }
