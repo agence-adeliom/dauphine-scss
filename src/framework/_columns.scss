@@ -9,14 +9,13 @@ Created by: https://getbootstrap.com/
 // Used only by Bootstrap to generate the correct number of grid classes given
 // any value of `$grid-columns`.
 
-@mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
+@mixin make-grid-columns($columns: $grid-columns, $breakpoints: $grid-breakpoints) {
   // Common properties for all breakpoints
   %grid-column {
     position: relative;
     width: 100%;
     min-height: 1px; // Prevent columns from collapsing when empty
-    padding-right: ($gutter / 2);
-    padding-left: ($gutter / 2);
+    @include gutterize;
   }
 
   @each $breakpoint in map-keys($breakpoints) {
@@ -75,7 +74,7 @@ Created by: https://getbootstrap.com/
     .order#{$infix}-#{$i} { order: $i; }
   }
 }
-@mixin make-grid-order($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
+@mixin make-grid-order($columns: $grid-columns, $breakpoints: $grid-breakpoints) {
 
   @each $breakpoint in map-keys($breakpoints) {
 

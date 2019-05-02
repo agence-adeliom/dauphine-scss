@@ -24,9 +24,14 @@ $container-max-widths: (
 ) !default;
 
 // Set the number of columns and specify the width of the gutters.
+$gutter-container-xs: 15px !default;
+$gutter-container: 12px !default;
+
+$grid-gutter-width-xs: 12px !default;
 $grid-gutter-width: 24px !default;
+
 $grid-columns: 12 !default;
 
 
 // Duratin animation hover txt / bg
-$animation-hover: 200ms !default;
+$animation-hover: 250ms !default;

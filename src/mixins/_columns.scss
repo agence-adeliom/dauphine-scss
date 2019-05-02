@@ -11,7 +11,12 @@
   margin-right:auto;
 
   @if $with-gutter == true {
-    @include gutterize;
+    padding-left: $gutter-container-xs;
+    padding-right: $gutter-container-xs;
+    @include breakpoint(sm){
+      padding-left: $gutter-container;
+      padding-right: $gutter-container;
+    }
   }
 
 }
@@ -43,10 +48,16 @@
 @mixin gutterize($left:true, $right:true) {
 
   @if $left == true {
-    padding-left: $grid-gutter-width/2;
+    padding-left: $grid-gutter-width-xs/2;
+    @include breakpoint(sm){
+      padding-left: $grid-gutter-width/2;
+    }
   }
   @if $right == true {
-    padding-right: $grid-gutter-width/2;
+    padding-right: $grid-gutter-width-xs/2;
+    @include breakpoint(sm){
+      padding-right: $grid-gutter-width/2;
+    }
   }
 
 }
@@ -63,8 +74,12 @@
 @mixin flex-row(){
   display: flex;
   flex-wrap: wrap;
-  margin-right: ($grid-gutter-width / -2);
-  margin-left: ($grid-gutter-width / -2);
+  margin-right: ($grid-gutter-width-xs / -2);
+  margin-left: ($grid-gutter-width-xs / -2);
+  @include breakpoint(sm){
+    margin-right: ($grid-gutter-width / -2);
+    margin-left: ($grid-gutter-width / -2);
+  }
 }
 
 @mixin flex-col($col, $sum: $grid-columns, $with-gutter:true) {
@@ -88,8 +103,7 @@
   // later on to override this initial width.
   width: 100%;
   min-height: 1px; // Prevent collapsing
-  padding-right: ($grid-gutter-width / 2);
-  padding-left: ($grid-gutter-width / 2);
+  @include gutterize;
 }
 
 // Sets grid offet margin
