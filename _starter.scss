@@ -1,9 +1,11 @@
 .container{
+    position: relative;
     @include container(true);
     @include container-max-widths();
 }
 
 .container-fluid{
+    position: relative;
     @include container(true);
 }
 
