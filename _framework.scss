@@ -6,15 +6,8 @@
 @import './src/framework/_spacing';
 @import './src/framework/_sizing';
 
-// Variable by default
-$columns: true !default;
-$sizing: true !default;
-
-$grid: false !default;
-$order: false !default;
-$direction: false !default;
-$display: false !default;
-$spacing: false !default;
+// Variables by default
+@import './src/_variables';
 
 // Grid
 @if($grid){

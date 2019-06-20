@@ -1,10 +1,11 @@
 @import './src/_variables';
 
+@import './src/mixins/_utils';
+
 @import './src/mixins/_breakpoint';
 @import './src/mixins/_columns';
 @import './src/mixins/_grid';
 
-@import './src/mixins/_utils';
 @import './src/mixins/_typography';
 @import './src/mixins/_animation';
 

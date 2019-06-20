@@ -32,6 +32,15 @@ $grid-gutter-width: 24px !default;
 
 $grid-columns: 12 !default;
 
-
 // Duratin animation hover txt / bg
 $animation-hover: 250ms !default;
+
+// Framework
+$columns: true !default;
+$sizing: true !default;
+
+$grid: false !default;
+$order: false !default;
+$direction: false !default;
+$display: false !default;
+$spacing: false !default;
