@@ -19,6 +19,12 @@
   @extend %absolute-full;
 }
 
+@mixin pseudo($display: block, $pos: absolute, $content: ''){
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+
 @mixin center($position) {
   position: absolute;
   @if $position == 'vertical' {
@@ -66,72 +72,32 @@
   background-repeat: no-repeat;
 }
 @mixin bg-center($url: null){
-  @extend %bg-center;
   @if $url{
     background: url('#{$url}');
   }
+  @extend %bg-center;
 }
 
 %img-fluid {
   max-width: 100%;
   height: auto;
 }
+
 @mixin img-fluid(){
   @extend %img-fluid;
 }
 
-%img-homothetic-init {
-  position: relative;
-  overflow: hidden;
-  &:after{
-    content: "";
-    display: block;
-  }
-}
-@mixin img-homothetic-init(){
-  @extend %img-homothetic-init;
-}
-@mixin bg-homothetic-init(){
-  @extend %img-homothetic-init;
-}
-
-@mixin img-homothetic($value, $breakpoint:null){
-  &:after{
-    @if $breakpoint {
-      @include breakpoint($breakpoint){
-        padding-top: $value;
+@mixin img-homothetic($args){
+  &:before{
+    @include pseudo($pos: relative);
+    width: 100%;
+    @each $o in map-keys($grid-breakpoints) {
+      $i: index($args, $o);
+      @if $i and $i + 1 <= length($args) and type-of(nth($args, $i + 1)) == number {
+        @include breakpoint(#{$o}){
+          padding-top: nth($args, $i + 1);
+        }
       }
     }
-    @else {
-      padding-top: $value;
-    }
   }
-}
-
-@mixin bg-homothetic($value, $breakpoint){
-  @include img-homothetic($value, $breakpoint);
-}
-
-
-%img-homothetic-inner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-}
-@mixin img-homothetic-inner(){
-  @extend %img-homothetic-inner;
-}
-
-%bg-homothetic-inner {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 100%;
-  transform: translateY(-50%);
-}
-@mixin bg-homothetic-inner(){
-  @extend %bg-homothetic-inner;
 }

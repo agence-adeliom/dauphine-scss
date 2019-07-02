@@ -18,19 +18,6 @@
   @extend %text-truncate;
 }
 
-@mixin invisible($visibility, $breakpoint: '') {
-
-  @if $breakpoint {
-    @include breakpoint($breakpoint){
-      visibility: $visibility !important;
-    }
-  }
-  @else {
-    visibility: $visibility !important;
-  }
-
-}
-
 @function number($string) {
   // Matrices
   $strings: '0' '1' '2' '3' '4' '5' '6' '7' '8' '9';
@@ -65,4 +52,134 @@
     );
   }
   @return $string;
+}
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+@mixin position($position, $args) {
+  @each $o in top right bottom left {
+    $i: index($args, $o);
+    @if $i and $i + 1 <= length($args) and type-of(nth($args, $i + 1)) == number {
+      #{$o}: convert-to-rem(nth($args, $i + 1));
+    }
+  }
+  position: $position;
+}
+
+// Positioning helpers
+@mixin absolute($args: '') {
+  @include position(absolute, $args);
+}
+
+@mixin fixed($args: '') {
+  @include position(fixed, $args);
+}
+
+@mixin relative($args: '') {
+  @include position(relative, $args);
+}
+
+@mixin size($width: null, $height: null) {
+  @if $width {
+    width : convert-to-rem($width);
+  } 
+  @if $height {
+    height: convert-to-rem($height);
+  }
+}
+
+@mixin first($nb) {
+  &:nth-child(-n + #{$nb}) {
+    @content;
+  }
+}
+@mixin last($nb) {
+  &:nth-last-child(-n + #{$nb}) {
+    @content;
+  }
+}
+@mixin from($nb) {
+  &:nth-child(n+ #{$nb}){
+    @content;
+  }
+}
+@mixin from-end($nb) {
+  &:nth-last-child(#{$nb}){
+    @content;
+  }
+}
+@mixin each($nb) {
+  &:nth-child(#{$nb}n){
+    @content;
+  }
+}
+@mixin between($first, $last) {
+  &:nth-child(#{$first}+3):nth-child(-n+#{$last}){
+    @content;
+  }
+}
+
+@mixin margin($args) {
+
+  $values : true;
+
+  @each $o in $args {
+    @if type-of($o) == string and $o != "auto" {
+      $values: false;
+    }
+  }
+
+  @if $values {
+    margin: $args;
+  }
+  @else{
+    @each $o in top right bottom left {
+      $i: index($args, $o);
+      @if $i and $i + 1 <= length($args) and type-of(nth($args, $i + 1)) == number {
+        $value: nth($args, $i + 1);
+        @if(unit($value) == "px"){
+          margin-#{$o}: rem(strip-unit($value));
+        }
+        @else {
+          margin-#{$o}: $value;
+        }
+      }
+    }
+  }
+  
+}
+
+@mixin padding($args) {
+
+  $values : true;
+
+  @each $o in $args {
+    @if type-of($o) == string and $o != "inherit" {
+      $values: false;
+    }
+  }
+
+  @if $values {
+    padding: $args;
+  }
+  @else{
+    @each $o in top right bottom left {
+      $i: index($args, $o);
+      @if $i and $i + 1 <= length($args) and type-of(nth($args, $i + 1)) == number {
+        $value: nth($args, $i + 1);
+        @if(unit($value) == "px"){
+          padding-#{$o}: convert-to-rem($value);
+        }
+        @else {
+          padding-#{$o}: $value;
+        }
+      }
+    }
+  }
+  
 }

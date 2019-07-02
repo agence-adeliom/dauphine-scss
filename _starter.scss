@@ -35,18 +35,3 @@
 .img-fluid{
     @extend %img-fluid;
 }
-
-.visible {
-    @include invisible(visible);
-}
-
-.invisible {
-    @include invisible(hidden);
-}
-
-.w-homothetic{
-    @extend %img-homothetic-init;
-    &__image{
-        @extend %img-homothetic-inner;
-    }
-}

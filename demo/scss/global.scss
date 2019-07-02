@@ -7,7 +7,7 @@ $order: true;
 @import '../../_starter';
 @import '../../_framework';
 
-$debug-rem: true;
+$debug-rem: false;
 
 html{  font-family:"Lucida Grande", Tahoma, Verdana, Arial, sans-serif; }
 
@@ -20,9 +20,7 @@ body{
 }
 
 h1{
-  font-size: rem(24);
-  margin-bottom: rem(15);
-  @include col(2, 12, "0 50");
+  @include text(24);
 }
 
 h2{
@@ -78,15 +76,8 @@ code {
   margin-bottom: 30px;
 }
 
-.w-image{
-  @extend %img-homothetic-init;
-  @include img-homothetic(60%, xs);
-  @include img-homothetic(26%, sm);
-  @include img-homothetic(30%, md);
-  @include img-homothetic(35%, md);
-  .image{
-    @extend %img-homothetic-inner;
-  }
+.image{
+  @include img-homothetic(xs 60% md 40%);
 }
 
 .w-article{

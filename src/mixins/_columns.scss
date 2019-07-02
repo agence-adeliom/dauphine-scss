@@ -121,8 +121,22 @@
   }
   @else if type-of($with-gutter) == string {
     $split-values: str-split($with-gutter, ' ');
-    padding-left: rem(number(nth($split-values, 1)));
-    padding-right: rem(number(nth($split-values, 2)));
+    $length: length($split-values);
+
+    @if $length > 1 {
+      $padding-left: number(nth($split-values, 1));
+      $padding-right: number(nth($split-values, 2));
+      @if $padding-left > 0 {
+        padding-left: rem($padding-left);
+      }
+      @if $padding-right > 0 {
+        padding-right: rem($padding-right);
+      }
+    }
+    @else{
+      padding-left: rem(number($split-values));
+      padding-right: rem(number($split-values));
+    }
   }
   @else {
     padding-left:0;

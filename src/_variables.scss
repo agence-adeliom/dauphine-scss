@@ -36,9 +36,8 @@ $grid-columns: 12 !default;
 $animation-hover: 250ms !default;
 
 // Framework
-$columns: true !default;
-$sizing: true !default;
-
+$columns: false !default;
+$sizing: false !default;
 $grid: false !default;
 $order: false !default;
 $direction: false !default;

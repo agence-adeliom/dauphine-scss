@@ -21,9 +21,6 @@ and open the template in the editor.
 
     <div class="container">
       <h1>Dauphine V2</h1>
-
-      <div class="test"></div>
-
       <div class="box">
         <header class="box-head">
           <h2>Variables</h2>
@@ -57,9 +54,8 @@ and open the template in the editor.
                 ** Available variables for framework (if it's included)
                 **
                 ******************************/
-                $columns: true !default;
-                $sizing: true !default;
-
+                $columns: false !default;
+                $sizing: false !default;
                 $grid: false !default;
                 $order: false !default;
                 $direction: false !default;
@@ -259,13 +255,42 @@ and open the template in the editor.
 
             // utils
             @include text-truncate();
-            @include invisible(visible, sm); /*2nd argument : name of the breakpoint (xsm, sm, md...)*/
 
             @extend %img-fluid;
 
             @extend %full;
 
+            // font-size ; line-height ; font-weight
+            @include text(20, 30, 700);
+
+            // select first $n elements
+            @include first(5){...}
+
+            // select last $n elements
+            @include last(5){...}
+
+            // select from $n elements
+            @include from(5){...}
+
+            // select $n elements from the end
+            @include from-end(5){...}
+
+            // select each $n elements
+            @include each(3){...}
+
+            // select between $n and $x elements
+            @include between(3, 6){...}
+
+            // position
+            @include fixed(top 0 left 0);
+            @include absolute(bottom 10% left 30%);
+            @include relative(right 100% bottom 20px);
+
             @include center(horizontal) /*arguments : horizontal, vertical, both*/
+
+            // define width and height of an element
+            @include size(100%, 100px);
+
           </code>
         </div>
       </div>
@@ -282,22 +307,11 @@ and open the template in the editor.
 
       <div class="box-content">
         <code>
-          @extend %img-homothetic-init;
-          @include img-homothetic(60%, xs);
-          @include img-homothetic(26%, sm);
-          @include img-homothetic(30%, md);
-          @include img-homothetic(35%, md);
-          .image{
-            @extend %img-homothetic-inner;
-          }
+          @include img-homothetic(xs 60% md 40%);
         </code>
       </div>
 
-      <div class="w-image">
-        <div class="image" style="background:url('http://via.placeholder.com/1920x1080') center / cover"></div>
-      </div>
-
-      </div>
+      <div class="image" style="background:url('http://via.placeholder.com/1920x1080') center / cover"></div>
 
       <div class="play-wrap container">
 

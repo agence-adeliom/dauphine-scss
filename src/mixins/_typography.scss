@@ -32,6 +32,15 @@ $debug-rem: false !default;
   @return $value;
 }
 
+@function convert-to-rem($value){
+  @if(type-of($value) == number and unit($value) == "px"){
+    @return _convert-to-rem($value);
+  }
+  @else {
+    @return $value;
+  }
+}
+
 // Calculates rem value from number
 @function rem-calc($values, $base-value: $rem-base) {
   @if type-of($values) != "number" {
@@ -61,7 +70,6 @@ $debug-rem: false !default;
   }
 }
 
-
 // Safe Rem
 @mixin safe-rem($property: font-size, $num: 14){
   $valid: true;
@@ -85,5 +93,19 @@ $debug-rem: false !default;
     line-height: $line-height;
   } @else{
     line-height: $font-size;
+  }
+}
+
+@mixin text($size: null, $lineHeight: null, $weight: null) {
+  @if $size != null {
+    font-size: rem($size);
+  }
+  @if $lineHeight != null {
+    line-height: rem($lineHeight);
+  } @else{
+    line-height: rem($size);
+  }
+  @if $weight != null {
+    font-weight: $weight;
   }
 }
