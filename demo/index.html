@@ -250,19 +250,85 @@ and open the template in the editor.
         </header>
         <div class="box-content">
           <code>
-            // clearfix
+            <b>Clearfix</b>
             @include clearfix();
+            <hr>
 
-            // utils
+            <b>Image</b>
+            @extend %img-fluid;
+            <hr>
+
+            <b>Full</b>
+            @extend %full;
+            <hr>
+
+            <b>Text</b>
+            @include text(20, 30, 700);
+            <i>=> font-size: rem(16);
+            => line-height: rem(24);
+            => font-weight: bold;</i>
+
+            <i>@include text(24, null, bold);
+            => font-size: rem(24);
+            => line-height: rem(24);
+            => font-weight: bold;</i>
+            
             @include text-truncate();
 
-            @extend %img-fluid;
+            <hr>
+            <b>Position</b>
+            @include absolute(top 0 right 50px);
+            <i>=> position: absolute;
+            => top: 0;
+            => right: rem(50);</i>
 
-            @extend %full;
+            @include fixed(top 0 left 0);
 
-            // font-size ; line-height ; font-weight
-            @include text(20, 30, 700);
+            @include absolute(bottom 10% left 30%);
 
+            @include relative(right 100% bottom 20px);
+            
+            @include center(horizontal)
+            <i>/*arguments : horizontal, vertical, both*/</i>
+
+            @include fixed(top 0 left 0);
+            <i>=> position: fixed;
+            => top: 0;
+            => left: 0;</i>
+
+            @include relative(bottom -10px);
+            <i>=> position: relative;
+            => bottom: rem(-10);</i>
+
+            <hr>
+            <b>Margin & padding</b>
+            @include margin(50px 10%);
+            <i>=> margin: rem(50) 10%;</i>
+
+            @include margin(top 50px right -20px);
+            <i>=> margin-top: rem(50);
+            => margin-right: rem(-20);</i>
+
+            @include margin(top 50px right auto left auto);
+            <i>=> margin-top: rem(50);
+            => margin-right: auto;
+            => margin-left: auto;</i>
+
+            <hr>
+            <b>With and height</b>
+            @include size(100%, 300px);
+            <i>=> width: 100%;
+            => height: rem(300);</i>
+
+            @include size(0, 150px);
+            <i> => height: rem(150);</i>
+            
+            @include size(100%, auto);
+            <i>=> width: 100%;
+            => height: auto;</i>
+
+            <hr>
+            <b>Children</b>
             // select first $n elements
             @include first(5){...}
 
@@ -280,13 +346,7 @@ and open the template in the editor.
 
             // select between $n and $x elements
             @include between(3, 6){...}
-
-            // position
-            @include fixed(top 0 left 0);
-            @include absolute(bottom 10% left 30%);
-            @include relative(right 100% bottom 20px);
-
-            @include center(horizontal) /*arguments : horizontal, vertical, both*/
+           
 
             // define width and height of an element
             @include size(100%, 100px);
