@@ -54,8 +54,14 @@
       @if $padding-left > 0 {
         padding-left: rem($padding-left);
       }
+      @else{
+        padding-left: 0;
+      }
       @if $padding-right > 0 {
         padding-right: rem($padding-right);
+      }
+      @else{
+        padding-right: 0;
       }
     }
     @else{
@@ -129,8 +135,14 @@
       @if $padding-left > 0 {
         padding-left: rem($padding-left);
       }
+      @else{
+        padding-left: 0;
+      }
       @if $padding-right > 0 {
         padding-right: rem($padding-right);
+      }
+      @else{
+        padding-right: 0;
       }
     }
     @else{
