@@ -40,9 +40,11 @@
   }
   @else if $with-gutter == 'left' {
     @include gutterize(true, false);
+    padding-right: 0;
   }
   @else if $with-gutter == 'right' {
     @include gutterize(false, true);
+    padding-left: 0;
   }
   @else if type-of($with-gutter) == string {
     $split-values: str-split($with-gutter, ' ');
@@ -121,9 +123,11 @@
   }
   @else if $with-gutter == 'left' {
     @include gutterize(true, false);
+    padding-right: 0;
   }
   @else if $with-gutter == 'right' {
     @include gutterize(false, true);
+    padding-left: 0;
   }
   @else if type-of($with-gutter) == string {
     $split-values: str-split($with-gutter, ' ');
