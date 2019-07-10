@@ -151,7 +151,7 @@
       }
     }
   }
-  
+
 }
 
 @mixin padding($args) {
@@ -181,5 +181,61 @@
       }
     }
   }
-  
+
+}
+
+@function nth-safe($list, $key, $default) {
+  @return if($key <= length($list), nth($list, $key), $default);
+}
+
+@mixin calcOffset($direction, $args, $offset: 300){
+
+  $breakpoints: map-keys($grid-breakpoints);
+
+  @each $o in map-keys($grid-breakpoints) {
+
+      $i: index($args, $o);
+
+      @if $i and type-of(nth($args, $i + 1)) == number {
+
+          $breakpoint: $o;
+          $nbColumns: nth($args, $i + 1);
+
+          $container-width: map-get($container-max-widths, $breakpoint);
+
+          @include breakpoint(#{$o}) {
+              @if ($direction == 'left') {
+                  width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12) + #{$offset}px);
+                  right: calc((100% - (#{$container-width} - #{$grid-gutter-width} / 2)) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12));
+              }
+              @if ($direction == 'right') {
+                  width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12) + #{$offset}px);
+                  left: calc((100% - (#{$container-width} - #{$grid-gutter-width} / 2)) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12));
+              }
+          }
+
+          $nextbreakpoint: breakpoint-next($o);
+
+          @if($nextbreakpoint){
+
+              $nextArgs: nth-safe($args, $i + 2, null);
+
+              @if($nextbreakpoint != $nextArgs) {
+                  @include calcOffset($direction, $nextbreakpoint $nbColumns, $offset);
+              }
+
+          }
+
+      }
+
+  }
+
+}
+
+@mixin offsetcontainer($direction, $args, $offset: 300){
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  @include calcOffset($direction, $args, $offset);
 }
