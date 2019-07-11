@@ -100,3 +100,34 @@ code {
     background-color: #999;
   }
 }
+
+.w-bloc{
+  $img-offset-container : 300;
+  position: relative;
+  .bg-gradient{
+    background: linear-gradient(#e66465, #9198e5);
+    @include offsetcontainer('left', md 6, $img-offset-container);
+  }
+
+  .container{
+
+  }
+
+  .content{
+    width: 50%;
+    background: #cccccc63;
+    position: relative;
+    padding: 30px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .bg-right{
+    background-image: url('https://loremflickr.com/640/360');
+    background-size: cover;
+    background-repeat: no-repeat;
+    @include offsetcontainer('right', md 4, $img-offset-container);
+  }
+}

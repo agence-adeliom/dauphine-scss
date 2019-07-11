@@ -276,7 +276,7 @@ and open the template in the editor.
             @include text-truncate();
 
             <hr>
-            <b>Position</b>
+            <b>Position & display</b>
             @include absolute(top 0 right 50px);
             <i>=> position: absolute;
             => top: 0;
@@ -299,6 +299,12 @@ and open the template in the editor.
             @include relative(bottom -10px);
             <i>=> position: relative;
             => bottom: rem(-10);</i>
+
+
+            @include flex-center/ @extend %flex-center
+            <i>=> display : flex;
+            => justify-content: center;
+            => align-items: center;</i>
 
             <hr>
             <b>Margin & padding</b>
@@ -372,6 +378,32 @@ and open the template in the editor.
       </div>
 
       <div class="image" style="background:url('http://via.placeholder.com/1920x1080') center / cover"></div>
+      <br><br><br>
+      <h1>Overflow background</h1>
+      <div class="box-content">
+        <code>
+          @include offsetcontainer('left', md 6, $img-offset-container);
+          @include offsetcontainer('right', md 4, $img-offset-container);
+        </code>
+        <section class="w-bloc">
+
+          <div class="bg-gradient"></div>
+
+          <div class="bg-right"></div>
+
+          <div class="container">
+            <div class="content" style="min-height:500px">
+              <p>Sur certains projets, nous devons gérer des débordements de fonds en dehors du container). Cette pratique n'est pas toujours simple à gérer.
+                <br>Cette mixin permet donc de créer dynamiquement ce débordement. Le principe est simple :
+                <br>- Le premier paramètre consiste à préciser si le débordement provient de la gauche ou de la droite
+                <br>- le second est le breakpoint à partir duquel on veut que ce débordement s'applique
+                <br>- le troisième est le nombre de colonnes sur lesquelles le débordement va s'étendre
+                <br>- le quatrième représente la variable d'une valeur en px (4 colonnes + 300px par exemple)
+                <br><br>Un bon exemple est sur le projet Culligan, sur la home, sur le bloc "Avec Culligan, protégez la planète !"</p>
+            </div>
+          </div>
+        </section>
+      </div>
 
       <div class="play-wrap container">
 
