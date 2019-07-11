@@ -233,9 +233,12 @@
 }
 
 @mixin offsetcontainer($direction, $args, $offset: 300){
-  display: block;
-  height: 100%;
-  position: absolute;
-  top: 0;
+  $minbreakpoint: nth($args, 1);
+  @include breakpoint($minbreakpoint) {
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+  }
   @include calcOffset($direction, $args, $offset);
 }
