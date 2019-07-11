@@ -54,6 +54,16 @@
   @include center(both);
 }
 
+%flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-center(){
+  @extend %flex-center;
+}
+
 %full {
   position: absolute;
   top: 0;
