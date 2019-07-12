@@ -105,7 +105,13 @@
       $i: index($args, $o);
       @if $i and $i + 1 <= length($args) and type-of(nth($args, $i + 1)) == number {
         @include breakpoint(#{$o}){
-          padding-top: nth($args, $i + 1);
+          $value: nth($args, $i + 1);
+          @if(unit($value) == "%"){
+              padding-top: $value;
+          }
+          @else{
+              padding-top: $value * 100%;
+          }
         }
       }
     }
