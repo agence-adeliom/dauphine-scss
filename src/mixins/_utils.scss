@@ -217,12 +217,24 @@
 
           @include breakpoint(#{$o}) {
               @if ($direction == 'left') {
+                @if (#{$o} == 'xs' or #{$o} == 'xsm' or #{$o} == 'sm'){
                   width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12) + #{$offset}px);
                   right: calc((100% - (#{$container-width} - #{$grid-gutter-width} / 2)) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12));
+                }
+                @else{
+                  width: calc((#{$nbColumns} * #{$container-width} / 12) + #{$offset}px);
+                  right: calc((100% - #{$container-width} / 2) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12));
+                }
               }
               @if ($direction == 'right') {
+                @if (#{$o} == 'xs' or #{$o} == 'xsm' or #{$o} == 'sm'){
                   width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12) + #{$offset}px);
                   left: calc((100% - (#{$container-width} - #{$grid-gutter-width} / 2)) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12));
+                }
+                @else{
+                  width: calc((#{$nbColumns} * #{$container-width} / 12) + #{$offset}px);
+                  left: calc((100% - #{$container-width} / 2) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12));
+                }
               }
           }
 

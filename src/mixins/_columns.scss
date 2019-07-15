@@ -13,7 +13,7 @@
   @if $with-gutter == true {
     padding-left: $gutter-container-xs;
     padding-right: $gutter-container-xs;
-    @include breakpoint(sm){
+    @include breakpoint-max(md){
       padding-left: $gutter-container;
       padding-right: $gutter-container;
     }
