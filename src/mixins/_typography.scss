@@ -62,6 +62,9 @@ $debug-rem: false !default;
 
 //Alias for rem-calc
 @function rem($px){
+  @if $px == 0 {
+    @return $px;
+  }
   @if $debug-rem {
     @return $px + px;
   }
