@@ -65,7 +65,13 @@
   @each $o in top right bottom left {
     $i: index($args, $o);
     @if $i and $i + 1 <= length($args) and type-of(nth($args, $i + 1)) == number {
-      #{$o}: rem-calc(nth($args, $i + 1));
+      $value: nth($args, $i + 1);
+      @if(unit($value) == "px"){
+        #{$o}: rem(strip-unit($value));
+      }
+      @else {
+        #{$o}: $value;
+      }
     }
   }
   position: $position;
@@ -85,11 +91,17 @@
 }
 
 @mixin size($width: null, $height: null) {
-  @if $width {
-    width : rem-calc($width);
+  @if(unit($width) == "px"){
+    width : rem(strip-unit($width));
   }
-  @if $height {
-    height: rem-calc($height);
+  @else {
+    width: $width;
+  }
+  @if(unit($height) == "px"){
+    height : rem(strip-unit($height));
+  }
+  @else {
+    height: $height;
   }
 }
 
@@ -173,7 +185,7 @@
       @if $i and $i + 1 <= length($args) and type-of(nth($args, $i + 1)) == number {
         $value: nth($args, $i + 1);
         @if(unit($value) == "px"){
-          padding-#{$o}: rem-calc($value);
+          padding-#{$o}: rem(strip-unit($value));
         }
         @else {
           padding-#{$o}: $value;
