@@ -228,7 +228,7 @@
                 }
                 @else{
                     @if ($offset == 'fluid') {
-                        width: calc((#{$nbColumns} * #{$container-width} / 12) + #{$offset}px + (100% - #{$container-width}) / 2);
+                        width: calc((#{$nbColumns} * #{$container-width} / 12) + (100% - #{$container-width}) / 2);
                     }
                     @else{
                         width: calc((#{$nbColumns} * #{$container-width} / 12) + #{$offset}px);
