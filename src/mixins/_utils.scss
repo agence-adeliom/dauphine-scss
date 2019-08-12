@@ -200,7 +200,7 @@
   @return if($key <= length($list), nth($list, $key), $default);
 }
 
-@mixin calcOffset($direction, $args, $offset: 300){
+@mixin calcOffset($direction, $args, $offset){
 
   $breakpoints: map-keys($grid-breakpoints);
 
@@ -218,21 +218,41 @@
           @include breakpoint(#{$o}) {
             @if ($direction == 'left') {
                 @if ($o == 'xs' or $o == 'xsm' or $o == 'sm'){
-                    width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12) + #{$offset}px);
+                    @if ($offset == 'fluid') {
+                        width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12) + (100% - (#{$container-width} - #{$grid-gutter-width})) / 2);
+                    }
+                    @else{
+                        width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12) + #{$offset}px);
+                    }
                     right: calc((100% - (#{$container-width} - #{$grid-gutter-width} / 2)) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12));
                 }
                 @else{
-                    width: calc((#{$nbColumns} * #{$container-width} / 12) + #{$offset}px);
+                    @if ($offset == 'fluid') {
+                        width: calc((#{$nbColumns} * #{$container-width} / 12) + #{$offset}px + (100% - #{$container-width}) / 2);
+                    }
+                    @else{
+                        width: calc((#{$nbColumns} * #{$container-width} / 12) + #{$offset}px);
+                    }
                     right: calc((100% - #{$container-width}) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12));
                 }
             }
             @if ($direction == 'right') {
                 @if ($o == 'xs' or $o == 'xsm' or $o == 'sm'){
-                    width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12) + #{$offset}px);
+                    @if ($offset == 'fluid') {
+                        width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12) + (100% - (#{$container-width} - #{$grid-gutter-width} / 2)) / 2);
+                    }
+                    @else{
+                        width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12) + #{$offset}px);
+                    }
                     left: calc((100% - (#{$container-width} - #{$grid-gutter-width} / 2)) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12));
                 }
                 @else{
-                    width: calc((#{$nbColumns} * #{$container-width} / 12) + #{$offset}px);
+                    @if ($offset == 'fluid') {
+                        width: calc((#{$nbColumns} * #{$container-width} / 12) + (100% - #{$container-width}) / 2);
+                    }
+                    @else{
+                        width: calc((#{$nbColumns} * #{$container-width} / 12) + #{$offset}px);
+                    }
                     left: calc((100% - #{$container-width}) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12));
                 }
             }
@@ -256,7 +276,7 @@
 
 }
 
-@mixin offsetcontainer($direction, $args, $offset: 300){
+@mixin offsetcontainer($direction, $args, $offset: 'fluid'){
   $minbreakpoint: nth($args, 1);
   @include breakpoint($minbreakpoint) {
     display: block;
