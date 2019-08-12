@@ -200,7 +200,7 @@
   @return if($key <= length($list), nth($list, $key), $default);
 }
 
-@mixin calcOffset($direction, $args, $offset){
+@mixin calcOffset($direction, $args, $offset: 'fluid'){
 
   $breakpoints: map-keys($grid-breakpoints);
 
