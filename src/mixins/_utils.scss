@@ -216,6 +216,8 @@
             $nbColumns: 12;
             $pixelValue: 0;
 
+            $gutter-width: 0px;
+
             @if type-of($currentArgs) == string {
                 $split-values: str-split($currentArgs, ' ');
                 $length: length($split-values);
@@ -235,46 +237,28 @@
 
             $container-width: map-get($container-max-widths, $breakpoint);
 
+            @if ($o == 'xs' or $o == 'xsm' or $o == 'sm'){
+              $gutter-width: $grid-gutter-width;
+            }
+
             @include breakpoint(#{$o}) {
                 @if ($direction == 'left') {
-                    @if ($o == 'xs' or $o == 'xsm' or $o == 'sm'){
-                        @if ($offset == 'fluid') {
-                            width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12 + #{$pixelValue}) + (100% - (#{$container-width} - #{$grid-gutter-width})) / 2);
-                        }
-                        @else{
-                            width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12 + #{$pixelValue}) + #{$offset}px);
-                        }
-                        right: calc((100% - (#{$container-width} - #{$grid-gutter-width} / 2)) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12) - #{$pixelValue});
-                    }
-                    @else{
-                        @if ($offset == 'fluid') {
-                            width: calc((#{$nbColumns} * #{$container-width} / 12 + #{$pixelValue}) + (100% - #{$container-width}) / 2);
-                        }
-                        @else{
-                            width: calc((#{$nbColumns} * #{$container-width} / 12 + #{$pixelValue}) + #{$offset}px);
-                        }
-                        right: calc((100% - #{$container-width}) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12) - #{$pixelValue});
-                    }
+                  @if ($offset == 'fluid') {
+                    width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12 + #{$pixelValue}) + (100% - (#{$container-width} - #{$grid-gutter-width})) / 2);
+                  }
+                  @else{
+                    width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12 + #{$pixelValue}) + #{$offset}px);
+                  }
+                  right: calc((100% - (#{$container-width} - #{$grid-gutter-width} / 2)) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12) - #{$pixelValue});
                 }
                 @if ($direction == 'right') {
-                    @if ($o == 'xs' or $o == 'xsm' or $o == 'sm'){
-                        @if ($offset == 'fluid') {
-                            width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12 + #{$pixelValue}) + (100% - (#{$container-width} - #{$grid-gutter-width} / 2)) / 2);
-                        }
-                        @else{
-                            width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12 + #{$pixelValue}) + #{$offset}px);
-                        }
-                        left: calc((100% - (#{$container-width} - #{$grid-gutter-width} / 2)) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12) - #{$pixelValue});
-                    }
-                    @else{
-                        @if ($offset == 'fluid') {
-                            width: calc((#{$nbColumns} * #{$container-width} / 12 + #{$pixelValue}) + (100% - #{$container-width}) / 2);
-                        }
-                        @else{
-                            width: calc((#{$nbColumns} * #{$container-width} / 12 + #{$pixelValue}) + #{$offset}px);
-                        }
-                        left: calc((100% - #{$container-width}) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12) - #{$pixelValue});
-                    }
+                  @if ($offset == 'fluid') {
+                    width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12 + #{$pixelValue}) + (100% - (#{$container-width} - #{$grid-gutter-width} / 2)) / 2);
+                  }
+                  @else{
+                    width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12 + #{$pixelValue}) + #{$offset}px);
+                  }
+                  left: calc((100% - (#{$container-width} - #{$grid-gutter-width} / 2)) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12) - #{$pixelValue});
                 }
             }
 
