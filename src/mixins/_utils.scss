@@ -285,7 +285,7 @@
                 $nextArgs: nth-safe($args, $i + 2, null);
 
                 @if($nextbreakpoint != $nextArgs) {
-                    @include tessst($direction, $nextbreakpoint $currentArgs, $offset);
+                    @include calcOffset($direction, $nextbreakpoint $currentArgs, $offset);
                 }
 
             }
