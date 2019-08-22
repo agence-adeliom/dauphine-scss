@@ -384,6 +384,7 @@ and open the template in the editor.
         <code>
           @include offsetcontainer('left', md 6, $img-offset-container);
           @include offsetcontainer('right', md 4, $img-offset-container);
+          @include offsetcontainer('right', md '4 50', $img-offset-container);
         </code>
         <section class="w-bloc">
 
@@ -397,7 +398,7 @@ and open the template in the editor.
                 <br>Cette mixin permet donc de créer dynamiquement ce débordement. Le principe est simple :
                 <br>- Le premier paramètre consiste à préciser si le débordement provient de la gauche ou de la droite
                 <br>- le second est le breakpoint à partir duquel on veut que ce débordement s'applique
-                <br>- le troisième est le nombre de colonnes sur lesquelles le débordement va s'étendre
+                <br>- le troisième peut à la fois être une chaîne de caractère (deux arguments) ou un nombre (un argument). Le premier argument fait référence au nombre de colonnes sur lesquelles le débordement va s'étendre. Le deuxième (facultatif) est une valeur en pixel pour ajouter un décalage supplémentaire au nombre de colonnes.
                 <br>- le quatrième représente la variable d'une valeur en px (4 colonnes + 300px par exemple)
                 <br><br>Un bon exemple est sur le projet Culligan, sur la home, sur le bloc "Avec Culligan, protégez la planète !"</p>
             </div>
