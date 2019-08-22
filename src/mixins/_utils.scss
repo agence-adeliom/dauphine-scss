@@ -204,75 +204,95 @@
 
   $breakpoints: map-keys($grid-breakpoints);
 
-  @each $o in map-keys($grid-breakpoints) {
+    @each $o in map-keys($grid-breakpoints) {
 
-      $i: index($args, $o);
+        $i: index($args, $o);
 
-      @if $i and type-of(nth($args, $i + 1)) == number {
+        @if $i {
 
-          $breakpoint: $o;
-          $nbColumns: nth($args, $i + 1);
+            $currentArgs: nth($args, $i + 1);
+            $breakpoint: $o;
 
-          $container-width: map-get($container-max-widths, $breakpoint);
+            $nbColumns: 12;
+            $pixelValue: 0;
 
-          @include breakpoint(#{$o}) {
-            @if ($direction == 'left') {
-                @if ($o == 'xs' or $o == 'xsm' or $o == 'sm'){
-                    @if ($offset == 'fluid') {
-                        width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12) + (100% - (#{$container-width} - #{$grid-gutter-width})) / 2);
-                    }
-                    @else{
-                        width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12) + #{$offset}px);
-                    }
-                    right: calc((100% - (#{$container-width} - #{$grid-gutter-width} / 2)) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12));
+            @if type-of($currentArgs) == string {
+                $split-values: str-split($currentArgs, ' ');
+                $length: length($split-values);
+                @if $length > 1 {
+                    $nbColumns: number(nth($split-values, 1));
+                    $pixelValue: number(nth($split-values, 2));
                 }
                 @else{
-                    @if ($offset == 'fluid') {
-                        width: calc((#{$nbColumns} * #{$container-width} / 12) + (100% - #{$container-width}) / 2);
-                    }
-                    @else{
-                        width: calc((#{$nbColumns} * #{$container-width} / 12) + #{$offset}px);
-                    }
-                    right: calc((100% - #{$container-width}) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12));
+                    $nbColumns: number(nth($split-values, 1));
                 }
             }
-            @if ($direction == 'right') {
-                @if ($o == 'xs' or $o == 'xsm' or $o == 'sm'){
-                    @if ($offset == 'fluid') {
-                        width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12) + (100% - (#{$container-width} - #{$grid-gutter-width} / 2)) / 2);
+            @else if type-of($currentArgs) == number {
+                $nbColumns: nth($args, $i + 1);
+            }
+
+            $pixelValue: $pixelValue + 'px';
+
+            $container-width: map-get($container-max-widths, $breakpoint);
+
+            @include breakpoint(#{$o}) {
+                @if ($direction == 'left') {
+                    @if ($o == 'xs' or $o == 'xsm' or $o == 'sm'){
+                        @if ($offset == 'fluid') {
+                            width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12 + #{$pixelValue}) + (100% - (#{$container-width} - #{$grid-gutter-width})) / 2);
+                        }
+                        @else{
+                            width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12 + #{$pixelValue}) + #{$offset}px);
+                        }
+                        right: calc((100% - (#{$container-width} - #{$grid-gutter-width} / 2)) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12) - #{$pixelValue});
                     }
                     @else{
-                        width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12) + #{$offset}px);
+                        @if ($offset == 'fluid') {
+                            width: calc((#{$nbColumns} * #{$container-width} / 12 + #{$pixelValue}) + (100% - #{$container-width}) / 2);
+                        }
+                        @else{
+                            width: calc((#{$nbColumns} * #{$container-width} / 12 + #{$pixelValue}) + #{$offset}px);
+                        }
+                        right: calc((100% - #{$container-width}) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12) - #{$pixelValue});
                     }
-                    left: calc((100% - (#{$container-width} - #{$grid-gutter-width} / 2)) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12));
                 }
-                @else{
-                    @if ($offset == 'fluid') {
-                        width: calc((#{$nbColumns} * #{$container-width} / 12) + (100% - #{$container-width}) / 2);
+                @if ($direction == 'right') {
+                    @if ($o == 'xs' or $o == 'xsm' or $o == 'sm'){
+                        @if ($offset == 'fluid') {
+                            width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12 + #{$pixelValue}) + (100% - (#{$container-width} - #{$grid-gutter-width} / 2)) / 2);
+                        }
+                        @else{
+                            width: calc((#{$nbColumns} * (#{$container-width} - #{$grid-gutter-width}) / 12 + #{$pixelValue}) + #{$offset}px);
+                        }
+                        left: calc((100% - (#{$container-width} - #{$grid-gutter-width} / 2)) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12) - #{$pixelValue});
                     }
                     @else{
-                        width: calc((#{$nbColumns} * #{$container-width} / 12) + #{$offset}px);
+                        @if ($offset == 'fluid') {
+                            width: calc((#{$nbColumns} * #{$container-width} / 12 + #{$pixelValue}) + (100% - #{$container-width}) / 2);
+                        }
+                        @else{
+                            width: calc((#{$nbColumns} * #{$container-width} / 12 + #{$pixelValue}) + #{$offset}px);
+                        }
+                        left: calc((100% - #{$container-width}) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12) - #{$pixelValue});
                     }
-                    left: calc((100% - #{$container-width}) / 2 + ((12 - #{$nbColumns}) * #{$container-width} / 12));
                 }
             }
+
+            $nextbreakpoint: breakpoint-next($o);
+
+            @if($nextbreakpoint){
+
+                $nextArgs: nth-safe($args, $i + 2, null);
+
+                @if($nextbreakpoint != $nextArgs) {
+                    @include tessst($direction, $nextbreakpoint $currentArgs, $offset);
+                }
+
+            }
+
         }
 
-          $nextbreakpoint: breakpoint-next($o);
-
-          @if($nextbreakpoint){
-
-              $nextArgs: nth-safe($args, $i + 2, null);
-
-              @if($nextbreakpoint != $nextArgs) {
-                  @include calcOffset($direction, $nextbreakpoint $nbColumns, $offset);
-              }
-
-          }
-
-      }
-
-  }
+    }
 
 }
 
