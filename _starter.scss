@@ -55,5 +55,11 @@
         width: 100%;
         height: 100%;
         background: #009688;
+        &:first-child{
+            margin-left: 0;
+        }
+        &:last-child{
+            margin-right: 0;
+        }
     }
 }
