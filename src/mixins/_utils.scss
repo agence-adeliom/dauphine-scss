@@ -249,7 +249,7 @@
             @include breakpoint(#{$o}) {
                 @if ($o == 'xs' or $o == 'xsm'){
                     width: calc((#{$nbColumns} / #{$grid-columns} * 100%) + #{$pixelValue} + #{$gutter-width});
-                    #{$propertyDirection}: 0;
+                    #{$direction}: 0;
                 }
                 @else{
                     @if ($offset == 'fluid') {
