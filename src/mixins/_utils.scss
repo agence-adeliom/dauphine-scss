@@ -248,7 +248,7 @@
 
             @include breakpoint(#{$o}) {
                 @if ($o == 'xs' or $o == 'xsm'){
-                    width: calc((#{$nbColumns} / #{$grid-columns} * 100) + #{$pixelValue} + #{$gutter-width});
+                    width: calc((#{$nbColumns} / #{$grid-columns} * 100%) + #{$pixelValue} + #{$gutter-width});
                     #{$propertyDirection}: 0;
                 }
                 @else{
