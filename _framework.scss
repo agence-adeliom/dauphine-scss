@@ -38,3 +38,6 @@
 @if($spacing){
     @include make-spacing();
 }
+
+// Always import
+@import './src/framework/_colors';
