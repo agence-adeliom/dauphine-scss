@@ -1,4 +1,4 @@
-export default class Emitter {
+class Emit {
 
     constructor() {
         this.events = {};
@@ -21,3 +21,5 @@ export default class Emitter {
     }
 
 }
+
+export const Emitter = new Emit();
