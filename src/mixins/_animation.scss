@@ -6,7 +6,7 @@
     @include transition($animation-hover, color);
 }
 
-@mixin transition($time, $type:all,  $effect:ease-in-out){
+@mixin transition($time, $type:all,  $effect:$animation-effect){
     transition: $type $time  $effect;
     // -moz-transform: $type $time  $effect;
     // -webkit-transform: $type $time  $effect;
