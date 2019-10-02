@@ -34,6 +34,15 @@ ul{
   }
 }
 
+.menu{
+  display: flex;
+  margin-top: rem(15);
+  margin-bottom: rem(30);
+  li{
+    margin-right: rem(15);
+  }
+}
+
 p{
   margin-bottom: rem(8);
 }

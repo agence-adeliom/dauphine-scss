@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+  <head>
+    <title>Démo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel='stylesheet' href='../dauphine.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='../starter.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='../class.css' type='text/css' media='all' />
+
+    <link rel='stylesheet' href='./scss/global.css' type='text/css' media='all' />
+
+  </head>
+  <body>
+
+    <div class="container">
+      <h1>Dauphine JS</h1>
+
+      <ul class="menu">
+        <li>
+          <a href="index.html">SCSS</a>
+        </li>
+        <li>
+          <a href="js.html">JS</a>
+        </li>
+    </ul>
+
+    <div class="box">
+      <header class="box-head">
+        <h2>Class JS</h2>
+      </header>
+      <div class="box-content">
+        <p></p>
+        <code>
+
+            /******************************
+            **
+            ** Class Emitter
+            **
+            ******************************/
+
+            <b>Dans le fichier de votre class JS :</b>
+
+
+            import Emitter from "dauphine/src/scripts/_emitter";
+
+            export default class Modal extends Emitter { <b>Bien penser à extends la Class Emitter</b>
+                constructor(el){
+                    super();
+                    this.modal = el;
+                };
+                init(){
+                    <b>Le premier argument est le nom de l'événement et le second correspond au callback (objet, function...)</b>
+                    this.emit('init', {
+                        modal: this.modal
+                    }); 
+                };
+            };
+
+
+            <b>Dans le fichier d'initialisation de la class :</b>
+
+            const element = document.querySelector('.modal');
+
+            const modalEl = new Modal(element);
+
+            modalEl.on('init', (callback) => {
+                console.log(callback.modal);  <b>callback correspond à notre object qui contient actuellement modal</b>
+            });
+
+        </code>
+      </div>
+    </div>
+
+    <div class="box">
+        <header class="box-head">
+            <h2>Helpers JS DOM Manipulation</h2>
+        </header>
+        <div class="box-content">
+            <code>
+
+            /******************************
+            **
+            ** Document Ready
+            **
+            ******************************/
+
+            <b>Similaire au document.ready de jQuery</b>
+
+            import {ready} from "dauphine/src/scripts/_utils";
+
+            ready(() => {
+                console.log('init');
+            });
+
+            </code>
+        </div>
+        <div class="box-content">
+            <code>
+
+            /******************************
+            **
+            ** Document querySelector
+            **
+            ******************************/
+
+            <b>Similaire au querySelector</b>
+
+            import {$} from "dauphine/src/scripts/_utils";
+
+            const element = $('.element');
+            console.log(element);
+
+            </code>
+        </div>
+        <div class="box-content">
+            <code>
+
+            /******************************
+            **
+            ** Document querySelectorAll
+            **
+            ******************************/
+
+            <b>Similaire au document querySelectorAll </b>
+
+            import {$$} from "dauphine/src/scripts/_utils";
+
+            const elements = $$('.elements');
+            console.log(elements); <b>Retourne une node list</b>
+
+            </code>
+        </div>
+        <div class="box-content">
+            <code>
+
+            /******************************
+            **
+            ** Get closest parent by selector
+            **
+            ******************************/
+
+            <b>Similaire au .parents() de jQuery</b>
+
+            import {getClosest} from "dauphine/src/scripts/_utils";
+
+            const children = document.querySelector('.children');
+
+            console.log(getClosest(children, '.parent'));
+
+            </code>
+        </div>
+        <div class="box-content">
+            <code>
+
+            /******************************
+            **
+            ** Get children by selector
+            **
+            ******************************/
+
+            <b>Récupère les enfants direct d'un parent grâce à un selecteur</b>
+
+            import {getChildren} from "dauphine/src/scripts/_utils";
+
+            const parent = document.querySelector('.parent');
+
+            console.log(getChildren(parent, '.children'));
+
+            </code>
+        </div>
+        <div class="box-content">
+            <code>
+
+            /******************************
+            **
+            ** Get previous element by selector
+            **
+            ******************************/
+
+            <b>Similaire au .prev() de jQuery</b>
+
+            import {getPreviousSibling} from "dauphine/src/scripts/_utils";
+
+            const element = document.querySelector('.element');
+
+            console.log(getPreviousSibling(element, '.prevElement'));
+
+            </code>
+        </div>
+        <div class="box-content">
+            <code>
+
+            /******************************
+            **
+            ** Get next element by selector
+            **
+            ******************************/
+
+            <b>Similaire au .next() de jQuery</b>
+
+            import {getNextSibling} from "dauphine/src/scripts/_utils";
+
+            const element = document.querySelector('.element');
+
+            console.log(getNextSibling(element, '.nextElement'));
+
+            </code>
+        </div>
+    </div>
+
+
+    <div class="box">
+        <header class="box-head">
+            <h2>Helpers JS Utils</h2>
+        </header>
+        <div class="box-content">
+            <code>
+    
+            /******************************
+            **
+            ** Debounce
+            **
+            ******************************/
+    
+            <b>Optimisation d'une fonction au resize par exemple</b>
+    
+            import {debounce} from "dauphine/src/scripts/_utils";
+    
+            document.addEventListener('resize', () => {
+                debounce(() => {
+                    console.log('test');
+                });
+            });
+    
+            </code>
+        </div>
+        <div class="box-content">
+            <code>
+    
+            /******************************
+            **
+            ** Debounce
+            **
+            ******************************/
+    
+            <b>Optimisation d'une fonction au resize par exemple</b>
+    
+            import {debounce} from "dauphine/src/scripts/_utils";
+    
+            document.addEventListener('resize', () => {
+                debounce(() => {
+                    console.log('test');
+                });
+            });
+    
+            </code>
+        </div>
+        <div class="box-content">
+            <code>
+    
+            /******************************
+            **
+            ** Build Query
+            **
+            ******************************/
+    
+            <b>Permet d'écrire une query selon un objet</b>
+    
+            import {buildQuery} from "dauphine/src/scripts/_utils";
+    
+            const datas = {
+                key: '12345',
+                id: 'abc00'
+            };
+              
+            const query = buildQuery(datas);
+            console.log(query); <b>Retourne : "key=12345&id=abc00"</b>
+    
+            </code>
+        </div>
+        <div class="box-content">
+            <code>
+    
+            /******************************
+            **
+            ** Get Params
+            **
+            ******************************/
+    
+            <b>Permet d'écrire une query selon un objet</b>
+    
+            import {getParams} from "dauphine/src/scripts/_utils";
+    
+            const url = 'https://www.monsite.com/key=12345&id=abc00';
+                
+            console.log(getParams(url)); <b>Retourne un objet {id:..., key:....}</b>
+    
+            </code>
+        </div>
+        <div class="box-content">
+            <code>
+    
+            /******************************
+            **
+            ** Get Cookie
+            **
+            ******************************/
+    
+            <b>Récupère la valeur d'un cookie</b>
+    
+            import {getCookie} from "dauphine/src/scripts/_utils";
+    
+            const cookie = getCookie('mycookie');
+            console.log(cookie);
+    
+            </code>
+        </div>
+    </div>
+
+
+    <div class="box">
+        <header class="box-head">
+            <h2>Helpers JS Manipulation Objects/Arrays</h2>
+        </header>
+    <div class="box-content">
+        <code>
+
+        /******************************
+        **
+        ** Merge Objects
+        **
+        ******************************/
+
+        <b>Similaire au Object.assign()</b>
+
+        import {mergeObjects} from "dauphine/src/scripts/_utils";
+
+        const obj1 = {
+            test: "salut"
+        };
+
+        const obj2 = {
+            test: "coucou",
+            test1 : "yo"
+        };
+
+        mergeObjects(obj1, ob2);
+
+        </code>
+    </div>
+    <div class="box-content">
+        <code>
+
+        /******************************
+        **
+        ** Test if two objects are equal
+        **
+        ******************************/
+
+        import {isEqual} from "dauphine/src/scripts/_utils";
+
+        const obj1 = {
+            test: "salut"
+        };
+
+        const obj2 = {
+            test: "coucou",
+            test1 : "yo"
+        };
+
+        isEqual(obj1, ob2); <b>Return false</b>
+
+        </code>
+    </div>
+    <div class="box-content">
+        <code>
+
+        /******************************
+        **
+        ** Copy object
+        **
+        ******************************/
+
+        import {copy} from "dauphine/src/scripts/_utils";
+
+        const obj = {...};
+
+        const cloneObj = copy(obj);
+
+        </code>
+    </div>
+    <div class="box-content">
+        <code>
+
+        /******************************
+        **
+        ** Shuffle Array
+        **
+        ******************************/
+
+        <b>Mélange un tableau aléatoirement</b>
+
+        import {shuffle} from "dauphine/src/scripts/_utils";
+
+        const array = [...];
+
+        const newArray = shuffle(array);
+
+        </code>
+    </div>
+    </div>
+
+    </body>
+</html>
