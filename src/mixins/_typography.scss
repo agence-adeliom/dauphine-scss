@@ -112,3 +112,8 @@ $debug-rem: false !default;
     font-weight: $weight;
   }
 }
+
+@function typo-responsive($value, $breakpoint:375){
+  $result: $value / $breakpoint * 100;
+  @return #{$result}vw
+}
