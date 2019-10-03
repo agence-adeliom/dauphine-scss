@@ -2295,10 +2295,10 @@ p {
 }
 
 code {
-  background: #eee;
-  border: 0.0625rem solid #ddd;
-  border-radius: 0.1875rem;
-  color: #aaa;
+  background: #e4e4e4;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  color: #000;
   display: block;
   font-family: monospace;
   white-space: pre-wrap;
