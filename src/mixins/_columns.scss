@@ -29,7 +29,10 @@
 
   width:percentage($col/$sum);
 
-  @if $float == true {
+  @if $float == 'auto' {
+    margin: auto;
+  }
+  @else if $float == true {
     float: left;
   }
   @else if $float == 'left' {
@@ -119,9 +122,12 @@
   }
 }
 
-@mixin flex-col($col, $sum: $grid-columns, $with-gutter:true) {
+@mixin flex-col($col, $sum: $grid-columns, $with-gutter:true, $margin:false) {
   flex: 0 0 percentage($col / $sum);
   max-width: percentage($col / $sum);
+  @if $margin == true {
+    margin: auto;
+  }
   @if $with-gutter == true {
     @include gutterize;
   }
