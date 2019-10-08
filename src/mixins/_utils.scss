@@ -247,7 +247,7 @@
             }
 
             @include breakpoint(#{$o}) {
-                @if ($o == 'xs' or $o == 'xsm'){
+                @if ($o == 'xs' or $o == 'xsm' or $nbColumns == 12){
                     width: calc((#{$nbColumns} / #{$grid-columns} * 100%) + #{$pixelValue});
                     #{$direction}: 0;
                 }
