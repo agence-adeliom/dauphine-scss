@@ -77,7 +77,12 @@
   // Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
   // Makes the @content apply to the given breakpoint and wider.
   @mixin breakpoint-max($name, $breakpoints: $grid-breakpoints) {
-    $max: breakpoint-max($name, $breakpoints);
+    @if type-of($name) == number {
+      $max: #{$name} + 'px'
+    }
+    @else{
+      $max: breakpoint-max($name, $breakpoints);
+    }
     @if $max {
       @media (max-width: $max) {
         @content;
@@ -90,7 +95,12 @@
   // Media of at most the maximum breakpoint width. No query for the largest breakpoint.
   // Makes the @content apply to the given breakpoint and narrower.
   @mixin breakpoint-min($name, $breakpoints: $grid-breakpoints) {
-    $min: breakpoint-min($name, $breakpoints);
+    @if type-of($name) == number {
+      $min: #{$name} + 'px'
+    }
+    @else{
+      $min: breakpoint-min($name, $breakpoints);
+    }
     @if $min {
       @media (min-width: $min) {
         @content;
@@ -103,8 +113,20 @@
   // Media that spans multiple breakpoint widths.
   // Makes the @content apply between the min and max breakpoints
   @mixin breakpoint-between($lower, $upper, $breakpoints: $grid-breakpoints) {
-    $min: breakpoint-min($lower, $breakpoints);
-    $max: breakpoint-max($upper, $breakpoints);
+
+    @if type-of($lower) == number {
+      $min: #{$lower} + 'px'
+    }
+    @else{
+      $min: breakpoint-min($lower, $breakpoints);
+    }
+
+    @if type-of($upper) == number {
+      $max: #{$upper} + 'px'
+    }
+    @else{
+      $max: breakpoint-max($upper, $breakpoints);
+    }
 
     @if $min != null and $max != null {
       @media (min-width: $min) and (max-width: $max) {
@@ -143,22 +165,13 @@
     }
   }
 
-
-  // Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
-  // Makes the @content apply to the given breakpoint and wider.
-  @mixin breakpoint($name, $breakpoints: $grid-breakpoints) {
-    $min: breakpoint-min($name, $breakpoints);
-    @if $min {
-      @media (min-width: $min) {
-        @content;
-      }
-    } @else {
-      @content;
-    }
-  }
-
   @mixin breakpoint-height-min($name, $breakpoints: $height-breakpoints) {
-    $min: breakpoint-min($name, $breakpoints);
+    @if type-of($name) == number {
+      $min: #{$name} + 'px'
+    }
+    @else{
+      $min: breakpoint-min($name, $breakpoints);
+    }
     @if $min {
       @media (min-height: $min) {
         @content;
@@ -169,7 +182,12 @@
   }
 
   @mixin breakpoint-height-max($name, $breakpoints: $height-breakpoints) {
-    $max: breakpoint-max($name, $breakpoints);
+    @if type-of($name) == number {
+      $max: #{$name} + 'px'
+    }
+    @else{
+      $max: breakpoint-max($name, $breakpoints);
+    }
     @if $max {
       @media (max-height: $max) {
         @content;
@@ -180,8 +198,20 @@
   }
 
   @mixin breakpoint-height-between($lower, $upper, $breakpoints: $height-breakpoints) {
-    $min: breakpoint-min($lower, $breakpoints);
-    $max: breakpoint-max($upper, $breakpoints);
+    
+    @if type-of($lower) == number {
+      $min: #{$lower} + 'px'
+    }
+    @else{
+      $min: breakpoint-min($lower, $breakpoints);
+    }
+
+    @if type-of($upper) == number {
+      $max: #{$upper} + 'px'
+    }
+    @else{
+      $max: breakpoint-max($upper, $breakpoints);
+    }
 
     @if $min != null and $max != null {
       @media (min-height: $min) and (max-height: $max) {
