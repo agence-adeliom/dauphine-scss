@@ -59,7 +59,12 @@
   // Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
   // Makes the @content apply to the given breakpoint and wider.
   @mixin breakpoint($name, $breakpoints: $grid-breakpoints) {
-    $min: breakpoint-min($name, $breakpoints);
+    @if type-of($name) == number {
+      $min: #{$name} + 'px'
+    }
+    @else{
+      $min: breakpoint-min($name, $breakpoints);
+    }
     @if $min {
       @media (min-width: $min) {
         @content;
