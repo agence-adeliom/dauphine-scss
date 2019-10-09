@@ -61,7 +61,7 @@
   @mixin breakpoint($name, $breakpoints: $grid-breakpoints) {
     $min: null;
     @if type-of($name) == number {
-      $min: #{$name} + 'px'
+      $min: #{$name}px
     }
     @else{
       $min: breakpoint-min($name, $breakpoints);
@@ -80,7 +80,7 @@
   @mixin breakpoint-max($name, $breakpoints: $grid-breakpoints) {
     $max: null;
     @if type-of($name) == number {
-      $max: #{$name} + 'px'
+      $max: #{$name}px
     }
     @else{
       $max: breakpoint-max($name, $breakpoints);
@@ -99,7 +99,7 @@
   @mixin breakpoint-min($name, $breakpoints: $grid-breakpoints) {
     $min: null;
     @if type-of($name) == number {
-      $min: #{$name} + 'px'
+      $min: #{$name}px
     }
     @else{
       $min: breakpoint-min($name, $breakpoints);
@@ -121,14 +121,14 @@
     $max: null;
 
     @if type-of($lower) == number {
-      $min: #{$lower} + 'px'
+      $min: #{$lower}px
     }
     @else{
       $min: breakpoint-min($lower, $breakpoints);
     }
 
     @if type-of($upper) == number {
-      $max: #{$upper} + 'px'
+      $max: #{$upper}px
     }
     @else{
       $max: breakpoint-max($upper, $breakpoints);
@@ -174,7 +174,7 @@
   @mixin breakpoint-height-min($name, $breakpoints: $height-breakpoints) {
     $min: null;
     @if type-of($name) == number {
-      $min: #{$name} + 'px'
+      $min: #{$name}px
     }
     @else{
       $min: breakpoint-min($name, $breakpoints);
@@ -191,7 +191,7 @@
   @mixin breakpoint-height-max($name, $breakpoints: $height-breakpoints) {
     $max: null;
     @if type-of($name) == number {
-      $max: #{$name} + 'px'
+      $max: #{$name}px
     }
     @else{
       $max: breakpoint-max($name, $breakpoints);
@@ -211,14 +211,14 @@
     $max: null;
 
     @if type-of($lower) == number {
-      $min: #{$lower} + 'px'
+      $min: #{$lower}px
     }
     @else{
       $min: breakpoint-min($lower, $breakpoints);
     }
 
     @if type-of($upper) == number {
-      $max: #{$upper} + 'px'
+      $max: #{$upper}px
     }
     @else{
       $max: breakpoint-max($upper, $breakpoints);
