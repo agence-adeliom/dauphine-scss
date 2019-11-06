@@ -5,7 +5,8 @@ $grid-breakpoints: (
   sm: 720px, // tablet-portrait
   md: 960px, // tablet-landscape
   lg: 1280px, // desktop
-  xlg: 1600px // desktop large
+  xlg: 1600px, // desktop large
+  xxl: 1920px // desktop extra large
 ) !default;
 
 // Height breakpoints
@@ -20,7 +21,8 @@ $container-max-widths: (
   sm: 720px,
   md: 940px,
   lg: 1200px,
-  xlg: 1400px
+  xlg: 1400px,
+  xxl: 1600px
 ) !default;
 
 // Colors
