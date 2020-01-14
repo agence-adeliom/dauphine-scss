@@ -6,6 +6,6 @@
 
 @each $color in $colors {
     .bg-#{nth($color, 1)} {
-        color: #{nth($color, 2)};
+        background-color: #{nth($color, 2)};
     }
 }
