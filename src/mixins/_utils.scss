@@ -291,3 +291,30 @@
   }
   @include calcOffset($direction, $args, $offset);
 }
+
+
+@mixin isIE(){
+  @media all and (-ms-high-contrast:none){
+     @content;
+  }
+}
+
+@mixin isEdge(){
+  @supports (-ms-ime-align: auto) {
+    @content;
+  }
+}
+
+@mixin isFirefox(){
+  @-moz-document url-prefix() {
+    @content;
+  }
+}
+
+@mixin isSafari() {
+  @media screen and (min-color-index:0) and(-webkit-min-device-pixel-ratio:0){ 
+    @media {
+      @content;
+    }
+  }
+}
