@@ -10,110 +10,116 @@ $debug-rem: false !default;
 
 // Strips unit suffix from value
 @function _strip-unit($num) {
-  @if type-of($num) != "number" {
-    @warn "num: #{$num} is not a number";
-    @return null;
-  }
-  @return $num / ($num * 0 + 1);
+    @if type-of($num) != "number" {
+        @warn "num: #{$num} is not a number";
+        @return null;
+    }
+    @return $num / ($num * 0 + 1);
 }
 
 // Converts to rem, utility for rem-calc
-@function _convert-to-rem($value, $base-value: $rem-base)  {
-  @if type-of($value) != "number" {
-    @warn "value: #{$value} is not a number";
-    @return null;
-  }
-  @if type-of($base-value) != "number" {
-    @warn "base-value: #{$base-value} is not a number";
-    @return null;
-  }
-  $value: _strip-unit($value) / _strip-unit($base-value) * 1rem;
-  @if (_strip-unit($value) == 0) { $value: 0; } // Turn 0rem into 0
-  @return $value;
+@function _convert-to-rem($value, $base-value: $rem-base) {
+    @if type-of($value) != "number" {
+        @warn "value: #{$value} is not a number";
+        @return null;
+    }
+    @if type-of($base-value) != "number" {
+        @warn "base-value: #{$base-value} is not a number";
+        @return null;
+    }
+    $value: _strip-unit($value) / _strip-unit($base-value) * 1rem;
+    @if (_strip-unit($value) == 0) {
+        $value: 0;
+    }
+    // Turn 0rem into 0
+    @return $value;
 }
 
-@function convert-to-rem($value){
-  @if(type-of($value) == number and unit($value) == "px"){
-    @return _convert-to-rem($value);
-  }
-  @else {
-    @return $value;
-  }
+@function convert-to-rem($value) {
+    @if (type-of($value) == number and unit($value) == "px") {
+        @return _convert-to-rem($value);
+    } @else {
+        @return $value;
+    }
 }
 
 // Calculates rem value from number
 @function rem-calc($values, $base-value: $rem-base) {
-  @if type-of($values) != "number" {
-    @warn "values: #{$values} is not a number";
-    @return null;
-  }
-  @if type-of($base-value) != "number" {
-    @warn "base-value: #{$base-value} is not a number";
-    @return null;
-  }
-  $max: length($values);
-  @if $max == 1 { @return _convert-to-rem(nth($values, 1), $base-value); }
-  $remValues: ();
-  @for $i from 1 through $max {
-    $remValues: append($remValues, _convert-to-rem(nth($values, $i), $base-value));
-  }
-  @return $remValues;
+    @if type-of($values) != "number" {
+        @warn "values: #{$values} is not a number";
+        @return null;
+    }
+    @if type-of($base-value) != "number" {
+        @warn "base-value: #{$base-value} is not a number";
+        @return null;
+    }
+    $max: length($values);
+    @if $max == 1 {
+        @return _convert-to-rem(nth($values, 1), $base-value);
+    }
+    $remValues: ();
+    @for $i from 1 through $max {
+        $remValues: append($remValues, _convert-to-rem(nth($values, $i), $base-value));
+    }
+    @return $remValues;
 }
 
 //Alias for rem-calc
-@function rem($px){
-  @if $px == 0 {
-    @return $px;
-  }
-  @if $debug-rem {
-    @return $px + px;
-  }
-  @else{
-    @return rem-calc($px);
-  }
+@function rem($px) {
+    @if $px == 0 {
+        @return $px;
+    }
+    @if $debug-rem {
+        @return $px + px;
+    } @else {
+        @return rem-calc($px);
+    }
 }
 
 // Safe Rem
-@mixin safe-rem($property: font-size, $num: 14){
-  $valid: true;
-  @if type-of($property) != "string" {
-    @warn "property: #{$property} is not a string";
-    $valid: false;
-  }
-  @if type-of($num) != "number" {
-    @warn "num: #{$num} is not a number";
-    $valid: false;
-  }
-  @if $valid == true {
-    #{$property}: #{_strip-unit($num)}px;
-    #{$property}: rem-calc($num);
-  }
+@mixin safe-rem($property: font-size, $num: 14) {
+    $valid: true;
+    @if type-of($property) != "string" {
+        @warn "property: #{$property} is not a string";
+        $valid: false;
+    }
+    @if type-of($num) != "number" {
+        @warn "num: #{$num} is not a number";
+        $valid: false;
+    }
+    @if $valid == true {
+        #{$property}: #{_strip-unit($num)}px;
+        #{$property}: rem-calc($num);
+    }
 }
 
 @mixin font-size($font-size, $line-height: null) {
-  font-size: $font-size;
-  @if $line-height{
-    line-height: $line-height;
-  } @else{
-    line-height: $font-size;
-  }
+    font-size: $font-size;
+    @if $line-height {
+        line-height: $line-height;
+    } @else {
+        line-height: $font-size;
+    }
 }
 
-@mixin text($size: null, $lineHeight: null, $weight: null) {
-  @if $size != null {
-    font-size: rem($size);
-  }
-  @if $lineHeight != null {
-    line-height: rem($lineHeight);
-  } @else{
-    line-height: rem($size);
-  }
-  @if $weight != null {
-    font-weight: $weight;
-  }
+@mixin text($size: null, $lineHeight: null, $weight: null, $color: null) {
+    @if $size != null {
+        font-size: rem($size);
+    }
+    @if $lineHeight != null {
+        line-height: rem($lineHeight);
+    } @else {
+        line-height: rem($size);
+    }
+    @if $weight != null {
+        font-weight: $weight;
+    }
+    @if $color != null {
+        color: $color;
+    }
 }
 
-@function typo-responsive($value, $breakpoint:375){
-  $result: $value / $breakpoint * 100;
-  @return #{$result}vw
+@function typo-responsive($value, $breakpoint:375) {
+    $result: $value / $breakpoint * 100;
+    @return #{$result}vw
 }
