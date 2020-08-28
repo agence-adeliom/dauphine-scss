@@ -102,7 +102,7 @@ $debug-rem: false !default;
     }
 }
 
-@mixin text($size: null, $lineHeight: null, $weight: null, $color: null) {
+@mixin text($size: null, $lineHeight: null, $weight: null, $color: null, $uppercase: false) {
     @if $size != null {
         font-size: rem($size);
     }
@@ -116,6 +116,9 @@ $debug-rem: false !default;
     }
     @if $color != null {
         color: $color;
+    }
+    @if $uppercase != false {
+        text-transform: uppercase;
     }
 }
 
