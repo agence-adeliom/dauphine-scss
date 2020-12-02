@@ -1,3 +1,11 @@
 @import './_reset';
 @import './_normalize';
 @import './_flavor';
+
+@if($vendors) {
+
+    @include make-reset();
+    @include make-normalize();
+    @include make-flavor();
+
+}

@@ -1,5 +1,2 @@
-@if($vendors) {
-    @import './src/vendor/_vendors';
-}
-
+@import './src/vendor/_vendors';
 @import './_mixins';
