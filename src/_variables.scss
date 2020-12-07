@@ -24,9 +24,6 @@ $container-max-widths: (
     xlg: 1400px
 ) !default;
 
-// Colors
-$colors: () !default;
-
 // Set the number of columns and specify the width of the gutters.
 $gutter-container-xs: 15px !default;
 $gutter-container: 12px !default;
@@ -49,6 +46,8 @@ $direction: false !default;
 $display: false !default;
 $spacing: false !default;
 
-
 // Vendors
 $vendors: true !default;
+
+// Colors
+$colors: () !default;

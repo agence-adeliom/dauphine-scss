@@ -8,10 +8,6 @@
 
 @mixin transition($time, $type:all,  $effect:$animation-effect){
     transition: $type $time  $effect;
-    // -moz-transform: $type $time  $effect;
-    // -webkit-transform: $type $time  $effect;
-    // -o-transform: $type $time  $effect;
-    // -ms-transform: $type $time  $effect;
 }
 
 @mixin keyframes($animation) {
