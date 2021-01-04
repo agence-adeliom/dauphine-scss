@@ -7,10 +7,10 @@
 
   @each $breakpoint in map-keys($grid-breakpoints) {
 
-    @if $breakpoint != 'xsm' and $breakpoint != 'xlg' {
+    @if $breakpoint != 'xsm' {
 
       $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
-      
+
       @for $i from 2 through 4 {
         .w-grid#{$infix}-#{$i} {
           @extend %grid-display;
@@ -18,7 +18,7 @@
       }
 
       @include breakpoint($breakpoint, $grid-breakpoints) {
-        
+
         @for $i from 2 through 4 {
           .w-grid#{$infix}-#{$i} {
             grid-template-columns: repeat($i, 1fr);

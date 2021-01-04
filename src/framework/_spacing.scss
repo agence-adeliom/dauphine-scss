@@ -26,7 +26,7 @@ Created by: https://getbootstrap.com/
     @include breakpoint($breakpoint) {
       $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
-      @if $breakpoint != 'xsm' and $breakpoint != 'xlg'{
+      @if $breakpoint != 'xsm' {
         @include spacing($infix);
       }
     }

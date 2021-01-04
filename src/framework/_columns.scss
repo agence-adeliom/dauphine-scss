@@ -20,10 +20,10 @@ Created by: https://getbootstrap.com/
 
   @each $breakpoint in map-keys($breakpoints) {
 
-    @if $breakpoint != 'xsm' and $breakpoint != 'xlg' {
+    @if $breakpoint != 'xsm' {
 
       $infix: breakpoint-infix($breakpoint, $breakpoints);
-  
+
       // Allow columns to stretch full width below their breakpoints
       @for $i from 1 through $columns {
         .col#{$infix}-#{$i} {
@@ -34,7 +34,7 @@ Created by: https://getbootstrap.com/
       .col#{$infix}-auto {
         @extend %grid-column;
       }
-  
+
       @include breakpoint($breakpoint, $breakpoints) {
         // Provide basic `.col-{bp}` classes for equal-width flexbox columns
         .col#{$infix} {
@@ -47,13 +47,13 @@ Created by: https://getbootstrap.com/
           width: auto;
           max-width: none; // Reset earlier grid tiers
         }
-  
+
         @for $i from 1 through $columns {
           .col#{$infix}-#{$i} {
             @include flex-col($i, $columns);
           }
         }
-  
+
         // `$columns - 1` because offsetting by the width of an entire row isn't possible
         @for $i from 0 through ($columns - 1) {
           @if not ($infix == "" and $i == 0) { // Avoid emitting useless .offset-0
@@ -78,7 +78,7 @@ Created by: https://getbootstrap.com/
 
   @each $breakpoint in map-keys($breakpoints) {
 
-    @if $breakpoint != 'xsm' and $breakpoint != 'xlg' {
+    @if $breakpoint != 'xsm' {
 
       $infix: breakpoint-infix($breakpoint, $breakpoints);
 
