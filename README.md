@@ -5,7 +5,7 @@ Adeliom grid starter pack
 ## How to install Dauphine
 
 ```
-yarn add https://bitbucket.org/adeliomgit/dauphine-scss.git
+yarn add https://github.com/agence-adeliom/dauphine-scss
 ```
 
 ## How to use Dauphine
