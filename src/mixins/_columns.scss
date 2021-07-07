@@ -1,3 +1,5 @@
+@use "sass:math";
+
 /******************************
 **
 ** Container/Gutters
@@ -7,17 +9,17 @@
 @mixin container($with-gutter:false) {
 
   width: 100%;
-  margin-left:auto;
-  margin-right:auto;
+  margin-left: auto;
+  margin-right: auto;
 
   @if $with-gutter == true {
     padding-left: $gutter-container-xs;
     padding-right: $gutter-container-xs;
-    @include breakpoint(sm){
+    @include breakpoint(sm) {
       padding-left: $gutter-container;
       padding-right: $gutter-container;
     }
-    @include breakpoint(md){
+    @include breakpoint(md) {
       padding-left: 0;
       padding-right: 0;
     }
@@ -27,33 +29,27 @@
 
 @mixin col($col, $sum: $grid-columns, $with-gutter: true, $float: false) {
 
-  width:percentage($col/$sum);
+  width: math.percentage(math.div($col, $sum));
 
   @if $float == 'auto' {
     margin: auto;
-  }
-  @else if $float == true {
+  } @else if $float == true {
     float: left;
-  }
-  @else if $float == 'left' {
+  } @else if $float == 'left' {
     float: left;
-  }
-  @else if $float == 'right' {
+  } @else if $float == 'right' {
     float: right;
   }
 
   @if $with-gutter == true {
     @include gutterize;
-  }
-  @else if $with-gutter == 'left' {
+  } @else if $with-gutter == 'left' {
     @include gutterize(true, false);
     padding-right: 0;
-  }
-  @else if $with-gutter == 'right' {
+  } @else if $with-gutter == 'right' {
     @include gutterize(false, true);
     padding-left: 0;
-  }
-  @else if type-of($with-gutter) == string {
+  } @else if type-of($with-gutter) == string {
     $split-values: str-split($with-gutter, ' ');
     $length: length($split-values);
 
@@ -62,25 +58,21 @@
       $padding-right: number(nth($split-values, 2));
       @if $padding-left > 0 {
         padding-left: rem($padding-left);
-      }
-      @else{
+      } @else {
         padding-left: 0;
       }
       @if $padding-right > 0 {
         padding-right: rem($padding-right);
-      }
-      @else{
+      } @else {
         padding-right: 0;
       }
-    }
-    @else{
+    } @else {
       padding-left: rem(number($split-values));
       padding-right: rem(number($split-values));
     }
-  }
-  @else {
-    padding-left:0;
-    padding-right:0;
+  } @else {
+    padding-left: 0;
+    padding-right: 0;
   }
 
 }
@@ -88,15 +80,15 @@
 @mixin gutterize($left:true, $right:true) {
 
   @if $left == true {
-    padding-left: $grid-gutter-width-xs/2;
-    @include breakpoint(sm){
-      padding-left: $grid-gutter-width/2;
+    padding-left: math.div($grid-gutter-width-xs, 2);
+    @include breakpoint(sm) {
+      padding-left: math.div($grid-gutter-width, 2);
     }
   }
   @if $right == true {
-    padding-right: $grid-gutter-width-xs/2;
-    @include breakpoint(sm){
-      padding-right: $grid-gutter-width/2;
+    padding-right: math.div($grid-gutter-width-xs, 2);
+    @include breakpoint(sm) {
+      padding-right: math.div($grid-gutter-width, 2);
     }
   }
 
@@ -111,35 +103,32 @@
   }
 }
 
-@mixin flex-row(){
+@mixin flex-row() {
   display: flex;
   flex-wrap: wrap;
-  margin-right: ($grid-gutter-width-xs / -2);
-  margin-left: ($grid-gutter-width-xs / -2);
-  @include breakpoint(sm){
-    margin-right: ($grid-gutter-width / -2);
-    margin-left: ($grid-gutter-width / -2);
+  margin-right:  math.div($grid-gutter-width-xs, -2);
+  margin-left:  math.div($grid-gutter-width-xs, -2);
+  @include breakpoint(sm) {
+    margin-right:  math.div($grid-gutter-width, -2);
+    margin-left:  math.div($grid-gutter-width, -2);
   }
 }
 
 @mixin flex-col($col, $sum: $grid-columns, $with-gutter:true, $margin:false) {
-  flex: 0 0 percentage($col / $sum);
-  max-width: percentage($col / $sum);
+  flex: 0 0 math.percentage(math.div($col, $sum));
+  max-width: math.percentage(math.div($col, $sum));
   @if $margin == true {
     margin: auto;
   }
   @if $with-gutter == true {
     @include gutterize;
-  }
-  @else if $with-gutter == 'left' {
+  } @else if $with-gutter == 'left' {
     @include gutterize(true, false);
     padding-right: 0;
-  }
-  @else if $with-gutter == 'right' {
+  } @else if $with-gutter == 'right' {
     @include gutterize(false, true);
     padding-left: 0;
-  }
-  @else if type-of($with-gutter) == string {
+  } @else if type-of($with-gutter) == string {
     $split-values: str-split($with-gutter, ' ');
     $length: length($split-values);
 
@@ -148,25 +137,21 @@
       $padding-right: number(nth($split-values, 2));
       @if $padding-left > 0 {
         padding-left: rem($padding-left);
-      }
-      @else{
+      } @else {
         padding-left: 0;
       }
       @if $padding-right > 0 {
         padding-right: rem($padding-right);
-      }
-      @else{
+      } @else {
         padding-right: 0;
       }
-    }
-    @else{
+    } @else {
       padding-left: rem(number($split-values));
       padding-right: rem(number($split-values));
     }
-  }
-  @else {
-    padding-left:0;
-    padding-right:0;
+  } @else {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
@@ -182,5 +167,5 @@
 
 // Sets grid offet margin
 @mixin offset($col, $sum: $grid-columns, $direction:'left') {
-  margin-#{$direction}: percentage($col/$sum);
+  margin-#{$direction}: math.percentage(math.div($col, $sum));
 }
