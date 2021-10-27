@@ -1,11 +1,11 @@
 @each $color in $colors {
-    .color-#{nth($color, 1)} {
-        color: #{nth($color, 2)};
+    .color-#{"" + nth($color, 1)} {
+        color: #{"" + nth($color, 2)};
     }
 }
 
 @each $color in $colors {
-    .bg-#{nth($color, 1)} {
-        background-color: #{nth($color, 2)};
+    .bg-#{"" + nth($color, 1)} {
+        background-color: #{"" + nth($color, 2)};
     }
 }
