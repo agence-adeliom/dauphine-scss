@@ -1,3 +1,4 @@
+@use "sass:math";
 // ###Typography
 // Set base font size
 $rem-base: 16px !default;
@@ -14,7 +15,7 @@ $debug-rem: false !default;
         @warn "num: #{$num} is not a number";
         @return null;
     }
-    @return $num / ($num * 0 + 1);
+    @return math.div($num, $num * 0 + 1);
 }
 
 // Converts to rem, utility for rem-calc
@@ -27,7 +28,7 @@ $debug-rem: false !default;
         @warn "base-value: #{$base-value} is not a number";
         @return null;
     }
-    $value: _strip-unit($value) / _strip-unit($base-value) * 1rem;
+    $value: math.div(_strip-unit($value), _strip-unit($base-value));
     @if (_strip-unit($value) == 0) {
         $value: 0;
     }
